@@ -10,8 +10,5 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::namespace('ticket')->prefix('ticket')->group(function(){
-   Route::get('submit', 'TicketController@submitTicket')->name('submit');
-   Route::get('list', 'TicketController@listTicket')->name('list');
-   Route::post('submit-request', 'TicketController@ticketRequest')->name('submit-request');
-});
+
+Route::get('panell', 'Controller@panel');
