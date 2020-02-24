@@ -11,4 +11,5 @@
 |
 */
 
-Route::get('panell', 'Controller@panel');
+Route::get('admin', 'Controller@panel');
+Route::get('post', 'Controller@postPost');

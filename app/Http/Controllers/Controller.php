@@ -38,6 +38,11 @@ class Controller extends BaseController
 
     public function panel()
     {
-        return view('panel.index');
+        return view('panel2.home');
+    }
+
+    public function postPost()
+    {
+        return view('panel2.page.add-post');
     }
 }

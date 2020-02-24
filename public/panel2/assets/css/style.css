@@ -10,12 +10,12 @@
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 * Tags: html, themplate, Ela Admin
 --------------------------------------------------------- */
-/* 
+/*
 
 
 Googel Fonts  */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
-/* Googel Fonts End  
+/* Googel Fonts End
 
 */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
@@ -133,11 +133,11 @@ Googel Fonts  */
 .mb-15 {
   margin-bottom: 15px; }
 
-/* 
+/*
 
 
 Googel Fonts  */
-/* Googel Fonts End  
+/* Googel Fonts End
 
 */
 .bg-flat-color-1 {
@@ -567,7 +567,7 @@ aside.left-panel {
   -webkit-box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
           box-shadow: 1px 0 20px rgba(0, 0, 0, 0.08);
   position: fixed;
-  left: 0;
+  right: 0;
   bottom: 0;
   top: 55px;
   z-index: 999; }
@@ -631,11 +631,12 @@ aside.left-panel {
           color: #03a9f3; }
         .navbar .navbar-nav li > a .menu-icon {
           color: #607d8b;
-          float: left;
+          float: right;
           margin-top: 8px;
-          width: 55px;
+          width: 10px;
           text-align: left;
-          z-index: 9; }
+          z-index: 9;
+          margin-left: 15px;  }
         .navbar .navbar-nav li > a .menu-title-text {
           font-size: 14px; }
         .navbar .navbar-nav li > a .badge {
@@ -652,7 +653,7 @@ aside.left-panel {
             content: "";
             position: absolute;
             top: 23px;
-            right: 0;
+            left: 0;
             width: 8px;
             height: 8px;
             border-style: solid;
@@ -822,10 +823,10 @@ aside.left-panel {
 /* Right panel */
 .right-panel {
   background: #f1f2f7;
-  margin-left: 280px;
+  margin-right: 280px;
   margin-top: 55px; }
   .right-panel .top-left {
-    width: 350px;
+    width: 200px;
     float: left; }
   .right-panel .top-rigth {
     float: left; }
@@ -1010,8 +1011,8 @@ header .form-inline {
     -webkit-box-shadow: none;
             box-shadow: none;
     top: 52px !important;
-    left: inherit !important;
-    right: 0 !important;
+    left: 0 !important;
+    right: inherit !important;
     -webkit-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
             box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
     line-height: 35px; }
