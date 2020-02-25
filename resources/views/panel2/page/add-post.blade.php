@@ -40,7 +40,10 @@
                         <p class="text-left"> Title </p>
                     </label>
                     <input type="text" class="form-control" id="post-title" name="post-title">
-                    <small id="titleHelp" class="form-text text-muted"> Enter your Post Title</small>
+                </div>
+                <div class="form-group">
+                    <label for="description"> Description</label>
+                    <textarea class="form-control" rows="3"></textarea>
                 </div>
             </form>
         </div>

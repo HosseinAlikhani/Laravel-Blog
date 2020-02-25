@@ -40,7 +40,6 @@ class Controller extends BaseController
     {
         return view('panel2.home');
     }
-
     public function postPost()
     {
         return view('panel2.page.add-post');

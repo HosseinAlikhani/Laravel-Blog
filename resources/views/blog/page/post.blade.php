@@ -1,5 +1,4 @@
 @extends('blog.index')
-
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/styles/post.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('theme/styles/post_responsive.css') }}">

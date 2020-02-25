@@ -13,3 +13,4 @@
 
 Route::get('admin', 'Controller@panel');
 Route::get('post', 'Controller@postPost');
+
