@@ -10,7 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('table', function (){
+    return view('panel2.partials.tables-basic');
+});
 
-Route::get('admin', 'Controller@panel');
-Route::get('post', 'Controller@postPost');
+Route::prefix('profile')->group(function(){
+    Route::prefix('post')->namespace('post')->group(function(){
+        Route::get('list', 'PostController@getList')->name('getList');
+        Route::get('list/{post}', 'PostController@getLists')->name('getLists');
+        Route::get('add', 'PostController@getAdd')->name('getAdd');
 
+        Route::post('', 'PostController@postPost')->name('postPost');
+        Route::delete('', 'PostController@deletePost')->name('deletePost');
+
+    });
+});

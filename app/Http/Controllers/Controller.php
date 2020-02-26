@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
@@ -40,8 +41,13 @@ class Controller extends BaseController
     {
         return view('panel2.home');
     }
-    public function postPost()
+
+    public function profilePost()
     {
         return view('panel2.page.add-post');
+    }
+    public function postPost(Request $request)
+    {
+        dd($request->all());
     }
 }
