@@ -16,9 +16,9 @@ Route::get('table', function (){
 
 Route::prefix('profile')->group(function(){
     Route::prefix('post')->namespace('post')->group(function(){
-        Route::get('list', 'PostController@getList')->name('getList');
-        Route::get('list/{post}', 'PostController@getLists')->name('getLists');
-        Route::get('add', 'PostController@getAdd')->name('getAdd');
+        Route::get('list', 'PostController@getPosts')->name('getPosts');
+        Route::get('list/{post}', 'PostController@getPost')->name('getPost');
+        Route::get('add', 'PostController@addPost')->name('addPost');
 
         Route::post('', 'PostController@postPost')->name('postPost');
         Route::delete('', 'PostController@deletePost')->name('deletePost');

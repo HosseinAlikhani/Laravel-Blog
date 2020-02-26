@@ -11,11 +11,13 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-1">
-                    <button onclick="window.location.href = '{{ route('deletePost') }}';" class="btn btn-danger"> Delete </button>
+                    <button
+{{--                        onclick="window.location.href = '{{ route('deletePost') }}';" --}}
+                        class="btn btn-danger" id="delete-post"> Delete </button>
                 </div>
                 <div class="col-10"></div>
                 <div class="col-1">
-                    <button onclick="window.location.href = '{{ route('getAdd') }}';" class="btn btn-info"> Add Post </button>
+                    <button onclick="window.location.href = '{{ route('addPost') }}';" class="btn btn-info"> Add Post </button>
                 </div>
             </div>
             <table class="table table-hover">
@@ -31,9 +33,9 @@
                     @foreach($post as $posts)
                         <tr>
                             <th scope="row">{{ $posts->id }}</th>
-                            <td><a href="{{ route('getLists', [$posts->id]) }}"> {{ $posts->title }} </a></td>
+                            <td><a href="{{ route('getPosts', [$posts->id]) }}"> {{ $posts->title }} </a></td>
                             <td> {{ $posts->created_at }}</td>
-                            <td> <input type="checkbox" value=""> </td>
+                            <td> <input type="checkbox" id="delete-select" value="{{ $posts->id }}"> </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -41,4 +43,14 @@
         </div>
     </div>
 
+@endsection
+@section('script')
+<script>
+$(function(){
+    $('#delete-post').click(function(){
+        var id = $('#delete-select');
+        console.log(id);
+    });
+});
+</script>
 @endsection

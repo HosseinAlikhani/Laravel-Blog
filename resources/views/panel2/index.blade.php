@@ -79,8 +79,8 @@
                         <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Post</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="fa fa-bars"></i><a href=" {{ route('getList') }}">List</a></li>
-                            <li><i class="fa fa-plus"></i><a href=" {{ route('getAdd') }}">Add</a></li>
+                            <li><i class="fa fa-bars"></i><a href=" {{ route('getPosts') }}">List</a></li>
+                            <li><i class="fa fa-plus"></i><a href=" {{ route('addPost') }}">Add</a></li>
                         </ul>
                     </li>
                     </li>
@@ -205,10 +205,10 @@
             <div class="footer-inner bg-white">
                 <div class="row">
                     <div class="col-sm-6">
-                        Copyright &copy; 2018 Ela Admin
+                        Copyright &copy; 2018 D3-CR-33
                     </div>
                     <div class="col-sm-6 text-right">
-                        Designed by <a href="https://colorlib.com">Colorlib</a>
+                        Designed by <a href="#">D3-CR-33</a>
                     </div>
                 </div>
             </div>

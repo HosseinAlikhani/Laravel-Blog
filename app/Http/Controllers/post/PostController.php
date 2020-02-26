@@ -25,28 +25,18 @@ class PostController
         return Validator::make($validator, $value);
     }
 
-    public function getList()
+    public function getPosts()
     {
         $post = $this->model->all();
         return view('panel2.page.list-post', compact(['post']));
     }
-    public function getLists($post)
+    public function getPost(Post $post)
     {
-        $post = $this->model->find($post);
         return $post;
     }
-    public function getAdd()
+    public function addPost()
     {
         return view('panel2.page.add-post');
-    }
-
-    public function getPosts()
-    {
-
-    }
-    public function getPost($post)
-    {
-
     }
     public function postPost()
     {
@@ -54,7 +44,10 @@ class PostController
         if ($validator->fails()){
             return response($validator->errors()->first(), 423);
         }
-        $this->model->create($this->request->all());
+        $data = $this->request->all();
+        unset($data['image']);
+        unset($data['tag']);
+        $this->model->create($data);
         return response('ok all thing', 200);
     }
 }
