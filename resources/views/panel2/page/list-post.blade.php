@@ -9,18 +9,11 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <div class="row">
-                <div class="col-1">
-                    <button
-{{--                        onclick="window.location.href = '{{ route('deletePost') }}';" --}}
-                        class="btn btn-danger" id="delete-post"> Delete </button>
-                </div>
-                <div class="col-10"></div>
-                <div class="col-1">
-                    <button onclick="window.location.href = '{{ route('addPost') }}';" class="btn btn-info"> Add Post </button>
-                </div>
+            <div class="d-flex justify-content-start">
+                <button onclick="window.location.href = '{{ route('deletePost') }}';" class="m-3 btn btn-danger" id="delete-post"> Delete </button>
+                <button onclick="window.location.href = '{{ route('addPost') }}';" class="m-3 btn btn-info"> Add Post </button>
             </div>
-            <table class="table table-hover">
+            <table dir="rtl" class="table table-hover ">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -35,7 +28,7 @@
                             <th scope="row">{{ $posts->id }}</th>
                             <td><a href="{{ route('getPosts', [$posts->id]) }}"> {{ $posts->title }} </a></td>
                             <td> {{ $posts->created_at }}</td>
-                            <td> <input type="checkbox" id="delete-select" value="{{ $posts->id }}"> </td>
+                            <td> <i class="fa fa-trash-o"></i></td>
                         </tr>
                     @endforeach
                 </tbody>
