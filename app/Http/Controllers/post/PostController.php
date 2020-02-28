@@ -28,19 +28,18 @@ class PostController
     public function getPosts()
     {
         $post = $this->model->all();
-        return view('panel2.page.list-post', compact(['post']));
+        return view('panel2.page.post.list-post', compact(['post']));
     }
     public function getPost(Post $post)
     {
-        return view('panel2.page.edit-post', compact(['post']));
+        return view('panel2.page.post.edit-post', compact(['post']));
     }
     public function addPost()
     {
-        return view('panel2.page.add-post');
+        return view('panel2.page.post.add-post');
     }
     public function postPost()
     {
-        dd($this->request);
         $validator = $this->validator($this->request->all());
         if ($validator->fails()){
             return response($validator->errors()->first(), 423);
