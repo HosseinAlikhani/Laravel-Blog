@@ -34,7 +34,7 @@ class PostController
     {
         return view('panel2.page.post.edit-post', compact(['post']));
     }
-    public function addPost()
+    public function getPostPost()
     {
         return view('panel2.page.post.add-post');
     }

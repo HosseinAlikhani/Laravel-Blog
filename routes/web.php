@@ -18,7 +18,7 @@ Route::prefix('profile')->group(function(){
     Route::prefix('post')->namespace('post')->group(function(){
         Route::get('list', 'PostController@getPosts')->name('getPosts');
         Route::get('edit/{post}', 'PostController@getPost')->name('getPost');
-        Route::get('add', 'PostController@addPost')->name('addPost');
+        Route::get('add', 'PostController@getPostPost')->name('addPost');
 
         Route::post('', 'PostController@postPost')->name('postPost');
         Route::patch('', 'PostController@patchPost')->name('patchPost');
