@@ -32,7 +32,7 @@ class PostController
     }
     public function getPost(Post $post)
     {
-        return $post;
+        return view('panel2.page.edit-post', compact(['post']));
     }
     public function addPost()
     {
@@ -40,6 +40,7 @@ class PostController
     }
     public function postPost()
     {
+        dd($this->request);
         $validator = $this->validator($this->request->all());
         if ($validator->fails()){
             return response($validator->errors()->first(), 423);
@@ -49,5 +50,17 @@ class PostController
         unset($data['tag']);
         $this->model->create($data);
         return response('ok all thing', 200);
+    }
+    public function patchPost()
+    {
+        dd($this->request);
+    }
+    public function deletePost()
+    {
+        if ($this->model->destroy($this->request->post_id)) {
+            return response('delete post ' . $this->request->post_id . ' successfully',200);
+        }else{
+            return response('error when delete post ' . $this->request->post_id . ' please Trt Again Later!!!',423);
+        }
     }
 }

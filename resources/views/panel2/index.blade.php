@@ -76,13 +76,26 @@
                 <ul class="nav navbar-nav">
                     <li class="active">
                         <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
-                        <li class="menu-item-has-children dropdown">
+                    </li>
+                    <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Post</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li><i class="fa fa-bars"></i><a href=" {{ route('getPosts') }}">List</a></li>
                             <li><i class="fa fa-plus"></i><a href=" {{ route('addPost') }}">Add</a></li>
                         </ul>
                     </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Role & Permission</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li class="menu-title">Role</li><!-- /.menu-title -->
+                              <li><i class="fa fa-plus"></i><a href=" {{ route('getPosts') }}"> Add </a></li>
+                             <li><i class="fa fa-bars"></i><a href=" {{ route('getPosts') }}"> List </a></li>
+
+                            <li class="menu-title">Permission</li><!-- /.menu-title -->
+                            <li><i class="fa fa-plus"></i><a href=" {{ route('addPost') }}"> Add </a></li>
+                            <li><i class="fa fa-bars"></i><a href=" {{ route('getPosts') }}"> List </a></li>
+
+                        </ul>
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -217,10 +230,11 @@
     </div>
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="{{ asset('panel2/assets/js/main.js') }}"></script>
     <!--  Chart js -->
@@ -237,7 +251,7 @@
     <script src="{{ asset('panel2/assets/js/init/weather-init.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/full  calendar.min.js"></script>
     <script src="{{ asset('panel2/assets/js/init/fullcalendar-init.js') }}"></script>
     <script src="{{ asset('panel2/plugin/toast/dist/toasted.js') }}"></script>
     @yield('script')
