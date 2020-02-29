@@ -9,13 +9,11 @@ use Spatie\Permission\Models\Role;
 class RoleController extends BaseEntitiy
 {
     protected $request;
-
     public function __construct(Request $request, Role $role)
     {
         $this->request = $request;
         $this->model = $role;
     }
-
 
     public function getRoles()
     {

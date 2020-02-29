@@ -20,11 +20,11 @@
             </div>
         </div>
         <div class="card-body card-block">
-            <form id="add-post">
+            <form id="add-role">
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Post Image</label>
+                            <label for="">Post Image</label>
                             <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
                         </div>
                         <div class="form-group">

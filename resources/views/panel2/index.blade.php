@@ -88,12 +88,12 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Role & Permission</a>
                         <ul class="sub-menu children dropdown-menu">
                             <li class="menu-title">Role</li><!-- /.menu-title -->
-                              <li><i class="fa fa-plus"></i><a href=" {{ route('getPosts') }}"> Add </a></li>
-                             <li><i class="fa fa-bars"></i><a href=" {{ route('getPosts') }}"> List </a></li>
+                              <li><i class="fa fa-plus"></i><a href=" {{ route('getPostRole') }}"> Add </a></li>
+                             <li><i class="fa fa-bars"></i><a href=" {{ route('getRoles') }}"> List </a></li>
 
                             <li class="menu-title">Permission</li><!-- /.menu-title -->
-                            <li><i class="fa fa-plus"></i><a href=" {{ route('addPost') }}"> Add </a></li>
-                            <li><i class="fa fa-bars"></i><a href=" {{ route('getPosts') }}"> List </a></li>
+                            <li><i class="fa fa-plus"></i><a href=" {{ route('getPostPermission') }}"> Add </a></li>
+                            <li><i class="fa fa-bars"></i><a href=" {{ route('getPermissions') }}"> List </a></li>
 
                         </ul>
                     </li>

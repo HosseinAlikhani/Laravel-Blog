@@ -5,48 +5,34 @@
 @section('content')
 
     <div class="card">
-        <div class="card-header">
-            <div class="container">
-                <div class="row">
-                <div class="col-md-3">
-                    <button onclick="window.location.href = '{{ route('getPosts') }}';" class="btn btn-info"> List Post </button>
-                </div>
-                <div class="col-md-6">
-                </div>
-                <div class="col-md-3">
-                    <button onclick="window.location.href = '{{ route('addPost') }}';" class="btn btn-info"> Add Post </button>
-                </div>
-             </div>
+        <div class="card-body">
+            <div class="d-flex justify-content-start">
+                <button onclick="window.location.href = '{{ route('deletePost') }}';" class="m-3 btn btn-danger" id="delete-post"> Delete </button>
+                <button onclick="window.location.href = '{{ route('addPost') }}';" class="m-3 btn btn-info"> Add Post </button>
             </div>
-        </div>
-        <div class="card-body card-block">
-            <form id="add-post">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Post Image</label>
-                            <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="tag" data-role="tagsinput">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="Title"> Title </label>
-                            <input type="text" class="form-control" id="post-title" name="title">
-                        </div>
-                        <div class="form-group">
-                            <label for="description"> Description </label>
-                            <textarea class="form-control" name="description" rows="3"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn btn-outline-success btn-sm" id="submit-post" type="button">
-                    <i class="fa fa-magic"></i>
-                    Submit
-                </button>
-            </form>
+                <table dir="rtl" class="table table-hover ">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Created at</th>
+                        <th scope="col"> Operation </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+{{--                    @foreach($post as $posts)--}}
+{{--                        <tr id="row_post_{{ $posts->id }}">--}}
+{{--                            <th scope="row">{{ $posts->id }}</th>--}}
+{{--                            <td><a href="{{ route('getPosts', [$posts->id]) }}"> {{ $posts->title }} </a></td>--}}
+{{--                            <td> {{ $posts->created_at }}</td>--}}
+{{--                            <td>--}}
+{{--                                <button class="btn" id="deletepost_{{$posts->id}}" value="{{$posts->id }}" title="Delete Post" > <i class="fa fa-trash-o"></i> </button>--}}
+{{--                                <button onclick="window.location.href = '{{ route('getPost', [$posts->id]) }}';" class="btn" data-toggle="tooltip" data-placement="left" title="Edit Post"> <i class="fa fa-edit"></i> </button>--}}
+{{--                            </td>--}}
+{{--                        </tr>--}}
+{{--                    @endforeach--}}
+                    </tbody>
+                </table>
         </div>
     </div>
 
