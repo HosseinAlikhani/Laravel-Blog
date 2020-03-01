@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::namespace('auth')->group(function(){
+    Route::get('login', 'LoginController@view');
+});
 
 Route::prefix('profile')->group(function(){
     Route::get('', 'Controller@profile');
