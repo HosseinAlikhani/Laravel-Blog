@@ -10,7 +10,7 @@ class BaseEntitiy extends Controller
 
     public function create($data)
     {
-        $this->create($data);
+        return $this->model->create($data);
     }
     public function update($data)
     {
@@ -18,7 +18,7 @@ class BaseEntitiy extends Controller
     }
     public function delete($data)
     {
-        return $this->destroy($data);
+        return $this->model->destroy($data);
     }
     public function findAll()
     {

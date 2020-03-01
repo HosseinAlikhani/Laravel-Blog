@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Routing\Controller as BaseController;
+use App\Http\Controllers\role\PermissionController;
 
-class Controller extends BaseController {
+class Controller{
 
     public function profile()
     {
         return view('panel2.home');
+    }
+
+    public function permissionController()
+    {
+        return app(PermissionController::class);
     }
 }

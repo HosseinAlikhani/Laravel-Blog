@@ -7,82 +7,73 @@
     <div class="card">
         <div class="card-header">
             <div class="container">
-                <div class="row">
-                <div class="col-md-3">
-                    <button onclick="window.location.href = '{{ route('getPosts') }}';" class="btn btn-info"> List Post </button>
+                <div class="d-flex justify-content-start">
+                <button onclick="window.location.href = '{{ route('getPostPermission') }}';" class="m-3 btn btn-success"> <i class="fa fa-edit"></i> Add Permission </button>
                 </div>
-                <div class="col-md-6">
-                </div>
-                <div class="col-md-3">
-                    <button onclick="window.location.href = '{{ route('addPost') }}';" class="btn btn-info"> Add Post </button>
-                </div>
-             </div>
             </div>
         </div>
-        <div class="card-body card-block">
-            <form id="add-post">
-                <div class="row">
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Post Image</label>
-                            <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="tag" data-role="tagsinput">
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label for="Title"> Title </label>
-                            <input type="text" class="form-control" id="post-title" name="title">
-                        </div>
-                        <div class="form-group">
-                            <label for="description"> Description </label>
-                            <textarea class="form-control" name="description" rows="3"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <button class="btn btn-outline-success btn-sm" id="submit-post" type="button">
-                    <i class="fa fa-magic"></i>
-                    Submit
-                </button>
-            </form>
+        <div class="card-body">
+            @if(!empty($permission[0]))
+                <table dir="rtl" class="table table-hover ">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">name</th>
+                        <th scope="col">Created at</th>
+                        <th scope="col"> Operation </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($permission as $permissions)
+                        <tr id="row_permission_{{ $permissions->id }}">
+                            <th scope="row">{{ $permissions->id }}</th>
+                            <td><a href="{{ route('getPermission', [$permissions->id]) }}"> {{ $permissions->name }} </a></td>
+                            <td> {{ $permissions->created_at }}</td>
+                            <td>
+                                <button class="btn" id="deletepost_{{$permissions->id}}" value="{{$permissions->id }}" title="Delete Post" > <i class="fa fa-trash-o"></i> </button>
+                                <button onclick="window.location.href = '{{ route('getPermission', [$permissions->id]) }}';" class="btn" data-toggle="tooltip" data-placement="left" title="Edit Post"> <i class="fa fa-edit"></i> </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                    @else
+                        <a> nothing to show </a>
+                    @endif
+                </table>
+        </div>
         </div>
     </div>
 
 @endsection
 @section('script')
-    <script src="{{ asset('panel2/plugin/taginput/tagsinput.js') }}"></script>
-    <script>
-        $(function(){
-            $('#submit-post').click( function(event){
-                const toasted = new Toasted({
-                    color:  '#fafafa',
-                    position: "bottom-center",
-                    duration: 6000,
-                })
-                event.preventDefault();
-                var file = $('#add-post')[0];
-                var formData = new FormData(file);
+<script src="{{ asset('panel2/plugin/taginput/tagsinput.js') }}"></script>
+<script>
+        $(document).ready(function(){
+            var toasted = new Toasted();
+            $('button').click(function(){
+                var permissionId = {
+                    'permission_id': $(this).attr('value'),
+                };
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
                 $.ajax({
-                    url: " {{ route('postPost') }}",
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
+                    'url': " {{ route('deletePermission') }}",
+                    data: permissionId,
+                    type: "DELETE",
                     success: function(data){
+                        console.log('ok');
+                        console.log(permissionId);
+                        $('#row_permission_'+permissionId.permission_id).remove();
                         toasted.success(data)
                     },
                     error: function(data){
                         toasted.success(data.responseText)
                     },
-                });
-            })
-        })
-    </script>
+                })
+            });
+        });
+</script>
 @endsection

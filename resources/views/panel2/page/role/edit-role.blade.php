@@ -7,16 +7,10 @@
     <div class="card">
         <div class="card-header">
             <div class="container">
-                <div class="row">
-                <div class="col-md-3">
-                    <button onclick="window.location.href = '{{ route('getPosts') }}';" class="btn btn-info"> List Post </button>
+                <div class="d-flex justify-content-start">
+                    <button onclick="window.location.href = '{{ route('deleteRole') }}';" class="m-3 btn btn-danger" id="delete-post"> Delete </button>
+                    <button onclick="window.location.href = '{{ route('getPostRole') }}';" class="m-3 btn btn-info"> Add Role </button>
                 </div>
-                <div class="col-md-6">
-                </div>
-                <div class="col-md-3">
-                    <button onclick="window.location.href = '{{ route('addPost') }}';" class="btn btn-info"> Add Post </button>
-                </div>
-             </div>
             </div>
         </div>
         <div class="card-body card-block">

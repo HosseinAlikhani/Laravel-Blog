@@ -7,8 +7,8 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-start">
-                <button onclick="window.location.href = '{{ route('deletePost') }}';" class="m-3 btn btn-danger" id="delete-post"> Delete </button>
-                <button onclick="window.location.href = '{{ route('addPost') }}';" class="m-3 btn btn-info"> Add Post </button>
+                <button onclick="window.location.href = '{{ route('getPostRole') }}';" class="m-3 btn btn-info"> <i class="fa fa-edit"></i> Add Role </button>
+                <button onclick="window.location.href = '{{ route('deleteRole') }}';" class="m-3 btn btn-danger" id="delete-post"> <i class="fa fa-trash"></i> Delete </button>
             </div>
                 <table dir="rtl" class="table table-hover ">
                     <thead>
@@ -20,17 +20,17 @@
                     </tr>
                     </thead>
                     <tbody>
-{{--                    @foreach($post as $posts)--}}
-{{--                        <tr id="row_post_{{ $posts->id }}">--}}
-{{--                            <th scope="row">{{ $posts->id }}</th>--}}
-{{--                            <td><a href="{{ route('getPosts', [$posts->id]) }}"> {{ $posts->title }} </a></td>--}}
-{{--                            <td> {{ $posts->created_at }}</td>--}}
-{{--                            <td>--}}
-{{--                                <button class="btn" id="deletepost_{{$posts->id}}" value="{{$posts->id }}" title="Delete Post" > <i class="fa fa-trash-o"></i> </button>--}}
-{{--                                <button onclick="window.location.href = '{{ route('getPost', [$posts->id]) }}';" class="btn" data-toggle="tooltip" data-placement="left" title="Edit Post"> <i class="fa fa-edit"></i> </button>--}}
-{{--                            </td>--}}
-{{--                        </tr>--}}
-{{--                    @endforeach--}}
+                    @foreach($role as $roles)
+                        <tr id="row_post_{{ $roles->id }}">
+                            <th scope="row">{{ $roles->id }}</th>
+                            <td><a href="{{ route('getPosts', [$roles->id]) }}"> {{ $roles->name }} </a></td>
+                            <td> {{ $roles->created_at }}</td>
+                            <td>
+                                <button class="btn" id="deleterole_{{$roles->id}}" value="{{$roles->id }}" title="Delete Role" > <i class="fa fa-trash-o"></i> </button>
+                                <button onclick="window.location.href = '{{ route('getRole', [$roles->id]) }}';" class="btn" data-toggle="tooltip" data-placement="left" title="Edit Role"> <i class="fa fa-edit"></i> </button>
+                            </td>
+                        </tr>
+                    @endforeach
                     </tbody>
                 </table>
         </div>
@@ -48,7 +48,7 @@
                     duration: 6000,
                 })
                 event.preventDefault();
-                var file = $('#add-post')[0];
+                var file = $('#add-role')[0];
                 var formData = new FormData(file);
                 $.ajaxSetup({
                     headers: {
@@ -56,8 +56,8 @@
                     }
                 });
                 $.ajax({
-                    url: " {{ route('postPost') }}",
-                    type: "POST",
+                    url: " {{ route('deleteRole') }}",
+                    type: "delete",
                     data: formData,
                     processData: false,
                     contentType: false,

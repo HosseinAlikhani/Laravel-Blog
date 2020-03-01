@@ -4,6 +4,7 @@ namespace App\Http\Controllers\role;
 
 use App\Http\Controllers\BaseEntitiy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Spatie\Permission\Models\Role;
 
 class RoleController extends BaseEntitiy
@@ -14,11 +15,28 @@ class RoleController extends BaseEntitiy
         $this->request = $request;
         $this->model = $role;
     }
-
+    public function validator($input)
+    {
+        $value = [
+            'role_permission'    =>  'required',
+            'role_name' =>  'required',
+        ];
+        return Validator::make($input, $value);
+    }
+    public function permissionVariable($permission)
+    {
+        return explode(',', $permission['role_permission']);
+    }
+    public function createVariable($input)
+    {
+        return [
+            'name'  =>  $input['role_name'],
+        ];
+    }
     public function getRoles()
     {
-        $post = $this->findAll();
-        return view('panel2.page.role.list-role', compact(['post']));
+        $role = $this->findAll();
+        return view('panel2.page.role.list-role', compact(['role']));
     }
     public function getRole(Role $role)
     {
@@ -26,11 +44,20 @@ class RoleController extends BaseEntitiy
     }
     public function getPostRole()
     {
-        return view('panel2.page.role.add-role');
+        $permission = $this->permissionController()->findAll();
+        return view('panel2.page.role.add-role', compact(['permission']));
     }
     public function postRole()
     {
-
+        $validator = $this->validator($this->request->all());
+        if ($validator->fails()){
+            return response($validator->errors()->first(),423);
+        }
+        if ($this->create($this->createVariable($this->request->all()))){
+            return response('save successfully',200);
+        }else{
+            return response('error when save role', 423);
+        }
     }
     public function patchRole()
     {
@@ -38,7 +65,6 @@ class RoleController extends BaseEntitiy
     }
     public function deleteRole()
     {
-
     }
 
 }
