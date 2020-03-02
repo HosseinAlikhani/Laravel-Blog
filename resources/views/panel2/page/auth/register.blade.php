@@ -63,7 +63,7 @@
 {{--                            </div>--}}
 {{--                        </div>--}}
                         <div class="register-link m-t-15 text-center">
-                            <p>Already have account ? <a href="{{ route('login') }}"> Sign in</a></p>
+                            <p>Already have account ? <a href="{{ route('view-login') }}"> Sign in</a></p>
                         </div>
                     </form>
                 </div>

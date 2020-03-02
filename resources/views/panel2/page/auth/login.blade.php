@@ -51,7 +51,7 @@
                             <input type="checkbox"> Remember Me
                         </label>
                         <label class="pull-right">
-                            <a href="{{ route('forget-pw') }}">Forgotten Password?</a>
+                            <a href="{{ route('view-forget-pw') }}">Forgotten Password?</a>
                         </label>
 
                     </div>
@@ -63,7 +63,7 @@
 {{--                        </div>--}}
 {{--                    </div>--}}
                     <div class="register-link m-t-15 text-center">
-                        <p>Don't have account ? <a href="{{ route('register') }}"> Sign Up Here</a></p>
+                        <p>Don't have account ? <a href="{{ route('view-register') }}"> Sign Up Here</a></p>
                     </div>
                 </form>
             </div>

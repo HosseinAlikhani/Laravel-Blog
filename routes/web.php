@@ -11,9 +11,13 @@
 |
 */
 Route::namespace('auth')->group(function(){
-    Route::get('login', 'LoginController@view')->name('login');
-    Route::get('register', 'RegisterController@view')->name('register');
-    Route::get('forget-password', 'ForgetPasswordController@view')->name('forget-pw');
+    Route::prefix('login')->group(function(){
+        Route::get('', 'LoginController@view')->name('view-login');
+        Route::post('', 'LoginController@login')->name('login');
+    });
+
+    Route::get('register', 'RegisterController@view')->name('view-register');
+    Route::get('forget-password', 'ForgetPasswordController@view')->name('view-forget-pw');
 });
 
 Route::prefix('profile')->group(function(){
