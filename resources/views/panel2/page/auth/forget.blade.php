@@ -19,11 +19,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
-    <link rel="stylesheet" href="{{ asset('panel2/assets/css/cs-skin-elastic.css') }}">
+    <link rel="stylesheet" href=" {{ asset('panel2/assets/css/cs-skin-elastic.css') }}">
     <link rel="stylesheet" href="{{ asset('panel2/assets/css/style.css') }}">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 </head>
 <body class="bg-dark">
@@ -39,32 +38,10 @@
                 <div class="login-form">
                     <form>
                         <div class="form-group">
-                            <label>User Name</label>
-                            <input type="email" class="form-control" placeholder="User Name">
-                        </div>
-                        <div class="form-group">
                             <label>Email address</label>
                             <input type="email" class="form-control" placeholder="Email">
                         </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
-                        </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> Agree the terms and policy
-                            </label>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Register</button>
-{{--                        <div class="social-login-content">--}}
-{{--                            <div class="social-button">--}}
-{{--                                <button type="button" class="btn social facebook btn-flat btn-addon mb-3"><i class="ti-facebook"></i>Register with facebook</button>--}}
-{{--                                <button type="button" class="btn social twitter btn-flat btn-addon mt-2"><i class="ti-twitter"></i>Register with twitter</button>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-                        <div class="register-link m-t-15 text-center">
-                            <p>Already have account ? <a href="{{ route('login') }}"> Sign in</a></p>
-                        </div>
+                        <button type="submit" class="btn btn-primary btn-flat m-b-15">Submit</button>
                     </form>
                 </div>
             </div>
