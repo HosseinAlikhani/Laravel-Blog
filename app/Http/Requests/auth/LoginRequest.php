@@ -17,6 +17,7 @@ class LoginRequest extends BaseRequest
      */
     public function authorize()
     {
+
         return true;
     }
 
@@ -27,10 +28,14 @@ class LoginRequest extends BaseRequest
      */
     public function rules()
     {
-        return [
-            'username'  =>  'required',
-            'password'  =>  'required',
-        ];
+        if ($this->method() == 'GET'){
+            return [];
+        }else{
+            return [
+                'username'  =>  'required',
+                'password'  =>  'required',
+            ];
+        }
     }
 
     protected function failedValidation(Validator $validator)
