@@ -5,7 +5,6 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\BaseEntitiy;
 use App\Http\Requests\auth\LoginRequest;
 use App\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends BaseEntitiy
@@ -23,6 +22,19 @@ class LoginController extends BaseEntitiy
     }
     public function login()
     {
-        dd(Auth::check());
+        if ($this->attemp()){
+            return $this->responseMessage(['message' => $this->message('loginok')],200);
+        }else{
+            return $this->responseMessage(['message' => $this->message('dataincorrect')], 422);
+        }
+    }
+
+    public function attemp()
+    {
+        $validated = $this->request->validated();
+        return Auth::attempt([
+            'email' =>  $validated['username'],
+            'password'  =>  $validated['password'],
+        ]);
     }
 }
