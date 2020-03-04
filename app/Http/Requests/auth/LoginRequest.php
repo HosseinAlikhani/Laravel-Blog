@@ -28,16 +28,15 @@ class LoginRequest extends BaseRequest
      */
     public function rules()
     {
-        if ($this->method() == 'GET'){
+        if ( $this->method() == 'GET' ){
             return [];
-        }else{
+        }elseif( $this->method() == 'POST' ){
             return [
                 'username'  =>  'required',
                 'password'  =>  'required',
             ];
         }
     }
-
     protected function failedValidation(Validator $validator)
     {
         $errors = (new ValidationException($validator))->errors();
