@@ -55,3 +55,7 @@ Route::prefix('profile')->group(function(){
         });
     });
 });
+
+Route::namespace('blog')->group(function(){
+    Route::get('blog', 'BlogController@view'    );
+});
