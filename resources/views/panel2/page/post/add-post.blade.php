@@ -1,6 +1,7 @@
 @extends('panel2.index')
 @section('css')
     <link href="{{ asset('panel2/plugin/taginput/tagsinput.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('plugin/ckeditor/ckeditor.js') }}"></script>
 @endsection
 @section('content')
 
@@ -21,9 +22,6 @@
                             <label for="exampleFormControlFile1">Post Image</label>
                             <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="tag" data-role="tagsinput">
-                        </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
@@ -31,10 +29,16 @@
                             <input type="text" class="form-control" id="post-title" name="title">
                         </div>
                         <div class="form-group">
-                            <label for="description"> Description </label>
-                            <textarea class="form-control" name="description" rows="3"></textarea>
+                            <label for="Title"> Tags </label>
+                            <input type="text" name="tag" data-role="tagsinput">
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="description"> Description </label>
+                    <textarea name="editor1" id="editor1" rows="10" cols="80">
+                        This is my textarea to be replaced with CKEditor.
+                    </textarea>
                 </div>
                 <button class="btn btn-outline-success btn-sm" id="submit-post" type="button">
                     <i class="fa fa-magic"></i>
@@ -48,6 +52,7 @@
 @section('script')
     <script src="{{ asset('panel2/plugin/taginput/tagsinput.js') }}"></script>
     <script>
+        CKEDITOR.replace( 'editor1' );
         $(function(){
             $('#submit-post').click( function(event){
                 const toasted = new Toasted({

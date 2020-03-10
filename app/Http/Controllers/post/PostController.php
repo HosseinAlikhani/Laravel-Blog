@@ -40,6 +40,7 @@ class PostController
     }
     public function postPost()
     {
+        dd($this->request->all());
         $validator = $this->validator($this->request->all());
         if ($validator->fails()){
             return response($validator->errors()->first(), 423);
