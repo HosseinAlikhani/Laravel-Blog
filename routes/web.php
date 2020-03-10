@@ -57,5 +57,9 @@ Route::prefix('profile')->group(function(){
 });
 
 Route::namespace('blog')->group(function(){
-    Route::get('blog', 'BlogController@view'    );
+    Route::get('blog', 'BlogController@view')->name('blog');
+    Route::get('about', 'BlogController@about')->name('about');
+    Route::get('contact', 'BlogController@contact')->name('contact');
+    Route::get('single', 'BlogController@single')->name('single');
+    Route::get('work', 'BlogController@work')->name('work');
 });
