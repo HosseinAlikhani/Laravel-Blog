@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\post;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\BaseEntitiy;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class PostController
+class PostController extends BaseEntitiy
 {
     protected $request;
     protected $model;
@@ -21,13 +22,15 @@ class PostController
         $value = [
             'title'    =>  'required',
             'description'  =>  'required',
+            'tags'  =>  'required',
+            'pic'   =>  'required',
         ];
         return Validator::make($validator, $value);
     }
 
     public function getPosts()
     {
-        $post = $this->model->all();
+        $post = $this->findAll();
         return view('panel2.page.post.list-post', compact(['post']));
     }
     public function getPost(Post $post)
@@ -40,16 +43,17 @@ class PostController
     }
     public function postPost()
     {
-        dd($this->request->all());
         $validator = $this->validator($this->request->all());
         if ($validator->fails()){
             return response($validator->errors()->first(), 423);
         }
         $data = $this->request->all();
-        unset($data['image']);
-        unset($data['tag']);
-        $this->model->create($data);
-        return response('ok all thing', 200);
+        $data['pic'] = $this->uploadPic($this->request->pic);
+        $model = $this->create($data);
+        return response([
+            'message'   =>  'post create successfully',
+            'data'  =>  $model,
+        ], 200);
     }
     public function patchPost()
     {
@@ -57,10 +61,19 @@ class PostController
     }
     public function deletePost()
     {
-        if ($this->model->destroy($this->request->post_id)) {
+        if ($this->destroy($this->request->post_id)) {
             return response('delete post ' . $this->request->post_id . ' successfully',200);
         }else{
             return response('error when delete post ' . $this->request->post_id . ' please Trt Again Later!!!',423);
         }
+    }
+
+    public function uploadPic($pic)
+    {
+        $name = $pic->getClientOriginalName();
+        $name = pathinfo($name, PATHINFO_FILENAME);
+        $format = $pic->getClientOriginalExtension();
+        $dir = '/public/post';
+        return Storage::putFileAs($dir,$pic,$pic->getClientOriginalName());
     }
 }

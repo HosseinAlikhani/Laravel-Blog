@@ -20,7 +20,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="exampleFormControlFile1">Post Image</label>
-                            <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+                            <input type="file" name="pic" class="form-control-file" id="exampleFormControlFile1">
                         </div>
                     </div>
                     <div class="col-6">
@@ -30,14 +30,13 @@
                         </div>
                         <div class="form-group">
                             <label for="Title"> Tags </label>
-                            <input type="text" name="tag" data-role="tagsinput">
+                            <input type="text" name="tags" data-role="tagsinput">
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="description"> Description </label>
-                    <textarea name="editor1" id="editor1" rows="10" cols="80">
-                        This is my textarea to be replaced with CKEditor.
+                    <textarea id="editor1" rows="10" cols="80">
                     </textarea>
                 </div>
                 <button class="btn btn-outline-success btn-sm" id="submit-post" type="button">
@@ -55,6 +54,8 @@
         CKEDITOR.replace( 'editor1' );
         $(function(){
             $('#submit-post').click( function(event){
+                var editor = $('#editor1').val();
+                var hos = CKEDITOR.instances['editor1'].getData();
                 const toasted = new Toasted({
                     color:  '#fafafa',
                     position: "bottom-center",
@@ -63,6 +64,7 @@
                 event.preventDefault();
                 var file = $('#add-post')[0];
                 var formData = new FormData(file);
+                formData.append('description',hos);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
