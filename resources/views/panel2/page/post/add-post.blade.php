@@ -64,7 +64,7 @@
                 event.preventDefault();
                 var file = $('#add-post')[0];
                 var formData = new FormData(file);
-                formData.append('description',hos);
+                formData.append('long_description',hos);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
