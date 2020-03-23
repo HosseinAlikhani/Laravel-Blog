@@ -21,13 +21,23 @@ class PostController extends BaseEntitiy
     {
         $value = [
             'title'    =>  'required',
-            'description'  =>  'required',
+            'long_description'  =>  'required',
             'tags'  =>  'required',
             'pic'   =>  'required',
         ];
         return Validator::make($validator, $value);
     }
-
+    public function createVariable($data)
+    {
+        return [
+            'title' =>  $data['title'],
+            'tags'  =>  $data['tags'],
+            'short_description' =>  'short_description',
+            'long_description'  =>  $data['long_description'],
+            'user_id'   => '5',
+            'pic'   =>   $this->uploadPic($data['pic']),
+        ];
+    }
     public function getPosts()
     {
         $post = $this->findAll();
@@ -47,9 +57,7 @@ class PostController extends BaseEntitiy
         if ($validator->fails()){
             return response($validator->errors()->first(), 423);
         }
-        $data = $this->request->all();
-        $data['pic'] = $this->uploadPic($this->request->pic);
-        $model = $this->create($data);
+        $model = $this->create($this->createVariable($this->request->all()));
         return response([
             'message'   =>  'post create successfully',
             'data'  =>  $model,
