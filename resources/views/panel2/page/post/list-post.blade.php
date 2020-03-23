@@ -32,7 +32,7 @@
                             <td> {{ $posts->created_at }}</td>
                             <td>
                                 <button class="btn" id="deletepost_{{$posts->id}}" value="{{$posts->id }}" title="Delete Post" > <i class="fa fa-trash-o"></i> </button>
-                                <button onclick="window.location.href = '{{ route('getPost', [$posts->id]) }}';" class="btn" data-toggle="tooltip" data-placement="left" title="Edit Post"> <i class="fa fa-edit"></i> </button>
+                                <button onclick="window.location.href = '{{ route('editPost', [$posts->id]) }}';" class="btn" data-toggle="tooltip" data-placement="left" title="Edit Post"> <i class="fa fa-edit"></i> </button>
                             </td>
                         </tr>
                     @endforeach

@@ -31,11 +31,11 @@ class PostController extends BaseEntitiy
     {
         return [
             'title' =>  $data['title'],
+            'user_id'   =>  1,
             'tags'  =>  $data['tags'],
-            'short_description' =>  'short_description',
+            'pic'   =>  $this->uploadPic($this->request->pic),
             'long_description'  =>  $data['long_description'],
-            'user_id'   => '5',
-            'pic'   =>   $this->uploadPic($data['pic']),
+            'short_description' =>  'short_description',
         ];
     }
     public function getPosts()
@@ -57,15 +57,25 @@ class PostController extends BaseEntitiy
         if ($validator->fails()){
             return response($validator->errors()->first(), 423);
         }
+
         $model = $this->create($this->createVariable($this->request->all()));
         return response([
             'message'   =>  'post create successfully',
             'data'  =>  $model,
         ], 200);
     }
-    public function patchPost()
+    public function patchPost($post)
     {
-        dd($this->request);
+        $validator = $this->validator($this->request->all());
+        if ($validator->fails()){
+            return response($validator->errors()->first(), 423);
+        }
+
+        $model = $this->update($post, $this->createVariable($this->request->all()));
+        return response([
+            'message'   =>  'post create successfully',
+            'data'  =>  $model,
+        ], 200);
     }
     public function deletePost()
     {
@@ -79,9 +89,11 @@ class PostController extends BaseEntitiy
     public function uploadPic($pic)
     {
         $name = $pic->getClientOriginalName();
-        $name = pathinfo($name, PATHINFO_FILENAME);
+//        $name = pathinfo($name, PATHINFO_FILENAME);
         $format = $pic->getClientOriginalExtension();
-        $dir = '/public/post';
-        return Storage::putFileAs($dir,$pic,$pic->getClientOriginalName());
+        $dir = 'public/post';
+        Storage::putFileAs($dir,$pic,$pic->getClientOriginalName());
+        return '/storage/post/'.$name;
     }
+
 }

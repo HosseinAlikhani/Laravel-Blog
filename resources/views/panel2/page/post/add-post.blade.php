@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="description"> Description </label>
+                    <label for="long_description"> Description </label>
                     <textarea id="editor1" rows="10" cols="80">
                     </textarea>
                 </div>
@@ -55,7 +55,6 @@
         $(function(){
             $('#submit-post').click( function(event){
                 var editor = $('#editor1').val();
-                var hos = CKEDITOR.instances['editor1'].getData();
                 const toasted = new Toasted({
                     color:  '#fafafa',
                     position: "bottom-center",
@@ -64,6 +63,7 @@
                 event.preventDefault();
                 var file = $('#add-post')[0];
                 var formData = new FormData(file);
+                var hos = CKEDITOR.instances['editor1'].getData();
                 formData.append('long_description',hos);
                 $.ajaxSetup({
                     headers: {

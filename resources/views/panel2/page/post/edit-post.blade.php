@@ -1,6 +1,7 @@
 @extends('panel2.index')
 @section('css')
     <link href="{{ asset('panel2/plugin/taginput/tagsinput.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('plugin/ckeditor/ckeditor.js') }}"></script>
 @endsection
 @section('content')
     <div class="card">
@@ -15,24 +16,30 @@
             <form id="add-post">
                 <div class="row">
                     <div class="col-6">
-                        <div class="form-group">
-                            <label for="exampleFormControlFile1">Post Image</label>
-                            <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+                        <div class="d-flex justify-content-center">
+                            <img src="{{ asset($post->pic) }}" style="border-radius: 7px;" alt="Post Picture" width="150" height="150">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="tag" data-role="tagsinput">
+                            <label for="exampleFormControlFile1">Post Image</label>
+                            <input type="file" name="pic" class="form-control-file" id="exampleFormControlFile1">
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="Title"> Title </label>
-                            <input type="text" class="form-control" value="{{ $post->title }}" name="title">
+                            <input type="text" class="form-control" value="{{ $post->title }}" id="post-title" name="title">
                         </div>
                         <div class="form-group">
-                            <label for="description"> Description </label>
-                            <textarea class="form-control" name="description" rows="3">{{ $post->description }}</textarea>
+                            <label for="Title"> Tags </label>
+                            <input type="text" name="tags" value="" data-role="tagsinput">
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="long_description"> Description </label>
+                    <textarea id="editor1" rows="10" cols="80">
+                        {{ $post->long_description }}
+                    </textarea>
                 </div>
                 <button class="btn btn-outline-success btn-sm" id="submit-post" type="button">
                     <i class="fa fa-magic"></i>
@@ -46,6 +53,7 @@
 @section('script')
     <script src="{{ asset('panel2/plugin/taginput/tagsinput.js') }}"></script>
     <script>
+        CKEDITOR.replace( 'editor1' );
         $(function(){
             $('#submit-post').click( function(event){
                 const toasted = new Toasted({
@@ -56,19 +64,19 @@
                 event.preventDefault();
                 var file = $('#add-post')[0];
                 var formData = new FormData(file);
+                var hos = CKEDITOR.instances['editor1'].getData();
+                formData.append('long_description',hos);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
                 $.ajax({
-                    url: " {{ route('patchPost') }}",
-                    type: "PATCH",
-                    data: {
-                        'fuck': 'nothing',
-                    },
+                    url: " {{ route('patchPost', ['post' => $post->id]) }}",
+                    type: "POST",
+                    data: formData,
                     processData: false,
-                    // contentType: false,
+                    contentType: false,
                     success: function(data){
                         toasted.success(data)
                     },

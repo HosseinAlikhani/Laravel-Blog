@@ -11,9 +11,9 @@ class BaseEntitiy extends Controller
     {
         return $this->model->create($data);
     }
-    public function update($data)
+    public function update($id, $data)
     {
-        return $this->model->update($data);
+        return $this->model->find($id)->update($data);
     }
     public function delete($data)
     {

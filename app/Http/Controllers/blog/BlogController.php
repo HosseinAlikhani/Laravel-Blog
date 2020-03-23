@@ -4,7 +4,7 @@ namespace App\Http\Controllers\blog;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\post\PostController;
-use Illuminate\Http\Request;
+use App\Post;
 
 class BlogController extends Controller
 {
@@ -17,6 +17,11 @@ class BlogController extends Controller
         $post = $this->post()->findAll();
         return view('devblog.blog', compact(['post']));
     }
+    public function single($id)
+    {
+        $post = $this->post()->findOne($id);
+        return view('devblog.single', compact(['post']));
+    }
     public function about()
     {
         return view('devblog.about');
@@ -25,10 +30,7 @@ class BlogController extends Controller
     {
         return view('devblog.contact');
     }
-    public function single()
-    {
-        return view('devblog.single');
-    }
+
     public function work()
     {
         return view('devblog.work');
