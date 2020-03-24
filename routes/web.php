@@ -33,7 +33,7 @@ Route::prefix('')->group(function(){
 Route::prefix('comments')->group(function(){
    Route::get('', 'CommentController@getComments');
    Route::get('{comments}', 'CommentController@getComment');
-   Route::post('', 'CommentController@postComments');
+   Route::post('', 'CommentController@postComments')->name('postComment');
    Route::patch('', 'CommentController@patchComments');
    Route::delete('', 'CommentController@deleteComments');
 });
