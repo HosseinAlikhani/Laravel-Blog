@@ -37,3 +37,10 @@ Route::prefix('comments')->group(function(){
    Route::patch('', 'CommentController@patchComments');
    Route::delete('', 'CommentController@deleteComments');
 });
+Route::prefix('comment-replies')->group(function(){
+   Route::get('', 'CommentReplyController@getCommentReplies');
+   Route::get('{comment-replies}', 'CommentReplyController@getCommentReply');
+   Route::post('', 'CommentReplyController@postCommentReplies');
+   Route::patch('', 'CommentReplyController@patchCommentReplies');
+   Route::delete('', 'CommentReplyController@deleteCommentReplies');
+});
