@@ -1,10 +1,7 @@
 <?php
 
-namespace App\Http\Controllers\blog;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\post\PostController;
-use App\Post;
 
 class BlogController extends Controller
 {
@@ -15,7 +12,8 @@ class BlogController extends Controller
     public function view()
     {
         $post = $this->post()->findAll();
-        return view('devblog.blog', compact(['post']));
+        $comment = $this->commentController()->findAll();
+        return view('devblog.blog', compact(['post', 'comment']));
     }
     public function single($id)
     {

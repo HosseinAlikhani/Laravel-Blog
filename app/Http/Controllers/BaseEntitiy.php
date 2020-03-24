@@ -27,5 +27,13 @@ class BaseEntitiy extends Controller
     {
         return $this->model->find($id);
     }
+    public function check($data)
+    {
+        $sum = $this->model;
+        foreach ($data as $key => $value){
+            $sum = $sum->where($key, $value);
+        }
+        return $sum->first();
+    }
 
 }

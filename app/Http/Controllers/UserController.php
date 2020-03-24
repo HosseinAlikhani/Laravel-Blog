@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\BaseEntitiy;
-use App\User;
+use App\Model\User;
 use Illuminate\Http\Request;
 
 class UserController extends BaseEntitiy

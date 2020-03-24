@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\role\PermissionController;
 use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
@@ -91,10 +90,12 @@ class Controller extends BaseController
         return $value[$data];
     }
 
-
-    public function permissionController()
+    public function postController()
     {
-        return app(PermissionController::class);
+        return app(PostController::class);
     }
-
+    public function commentController()
+    {
+        return app(CommentController::class);
+    }
 }
