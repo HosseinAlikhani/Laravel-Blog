@@ -11,10 +11,8 @@
             <a href="{{ route('blog') }}" title="Go to Home Page"><h2>Back Home</h2></a>
             <a href="#comment" class="smoth-scroll"><i class="icon-bubbles"></i></a>
         </div>
-
         <div class="col-md-12 content-page">
             <div class="col-md-12 blog-post">
-
                 <div class="post-title">
                     <h1>{{ $post->title }}</h1>
                 </div>
@@ -36,12 +34,11 @@
 
         <!-- Contenedor Principal -->
         <div class="comments-container">
-            <h1>Comentarios <a href="http://creaticode.com">creaticode.com</a></h1>
             <ul id="comments-list" class="comments-list">
                 <li>
                     <div class="comment-main-level">
                         <!-- Avatar -->
-                        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+                        <div class="comment-avatar"><img src="{{ asset('/storage/user/avatar.png') }}" alt=""></div>
                         <!-- Contenedor del Comentario -->
                         <div class="comment-box">
                             <div class="comment-head">
@@ -56,64 +53,52 @@
                         </div>
                     </div>
                     <!-- Respuestas de los comentarios -->
-{{--                    <ul class="comments-list reply-list">--}}
-{{--                        <li>--}}
-{{--                            <!-- Avatar -->--}}
-{{--                            <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>--}}
-{{--                            <!-- Contenedor del Comentario -->--}}
-{{--                            <div class="comment-box">--}}
-{{--                                <div class="comment-head">--}}
-{{--                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>--}}
-{{--                                    <span>hace 10 minutos</span>--}}
-{{--                                    <i class="fa fa-reply"></i>--}}
-{{--                                    <i class="fa fa-heart"></i>--}}
-{{--                                </div>--}}
-{{--                                <div class="comment-content">--}}
-{{--                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </li>--}}
+                    <ul class="comments-list reply-list">
+                        <li>
+                            <!-- Avatar -->
+                            <div class="comment-avatar"><img src="{{ asset('/storage/user/avatar.png') }}" alt=""></div>
+                            <!-- Contenedor del Comentario -->
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
+                                    <span>hace 10 minutos</span>
+                                    <i class="fa fa-reply"></i>
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="comment-content">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+                                </div>
+                            </div>
+                        </li>
 
-{{--                        <li>--}}
-{{--                            <!-- Avatar -->--}}
-{{--                            <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>--}}
-{{--                            <!-- Contenedor del Comentario -->--}}
-{{--                            <div class="comment-box">--}}
-{{--                                <div class="comment-head">--}}
-{{--                                    <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>--}}
-{{--                                    <span>hace 10 minutos</span>--}}
-{{--                                    <i class="fa fa-reply"></i>--}}
-{{--                                    <i class="fa fa-heart"></i>--}}
-{{--                                </div>--}}
-{{--                                <div class="comment-content">--}}
-{{--                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-                </li>
-
-                <li>
-                    <div class="comment-main-level">
-                        <!-- Avatar -->
-                        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-{{--                        <!-- Contenedor del Comentario -->--}}
-{{--                        <div class="comment-box">--}}
-{{--                            <div class="comment-head">--}}
-{{--                                <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>--}}
-{{--                                <span>hace 10 minutos</span>--}}
-{{--                                <i class="fa fa-reply"></i>--}}
-{{--                                <i class="fa fa-heart"></i>--}}
-{{--                            </div>--}}
-{{--                            <div class="comment-content">--}}
-{{--                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?--}}
-{{--                            </div>--}}
-                        </div>
-                    </div>
+                        <li>
+                            <!-- Avatar -->
+                            <div class="comment-avatar"><img src="{{ asset('/storage/user/avatar.png') }}" alt=""></div>
+                            <!-- Contenedor del Comentario -->
+                            <div class="comment-box">
+                                <div class="comment-head">
+                                    <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
+                                    <span>hace 10 minutos</span>
+                                    <i class="fa fa-reply"></i>
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="comment-content">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </li>
             </ul>
+            <form id="comment-submit">
+                <textarea name="comment" style="height: 25%; width: 100%;"></textarea>
+                <p></p>
+                 <button class="load-more-button" id="submit-post" type="button">
+                     Submit
+                 </button>
+            </form>
         </div>
-
+<div>
 {{--        <div class="col-md-12 content-page">--}}
 {{--            <div class="col-md-12 blog-post">--}}
 {{--                <!-- Post Headline Start -->--}}
@@ -364,7 +349,7 @@
 
 {{--            </div>--}}
 {{--        </div>--}}
-
+</div>
     </div>
 @endsection
 
@@ -377,24 +362,33 @@
     </div>
     <!-- Endpage Box (Popup When Scroll Down) End -->
 @endsection
-<script type="text/javascript" src="{{ asset('devblog/js/syntax/shCore.js') }}"></script>
-<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushCss.js') }}"></script>
-<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushJScript.js') }}"></script>
-<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushPerl.js') }}"></script>
-<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushPhp.js') }}"></script>
-<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushPlain.js') }}"></script>
-<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushPython.js') }}"></script>
-<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushRuby.js') }}"></script>
-<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushSql.js') }}"></script>
-<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushVb.js') }}"></script>
-<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushXml.js') }}"></script>
+@section('script')
+    <script>
+        $(function () {
+            $('#comment-submit').click(function () {
+                {{--$.ajax({--}}
+                {{--    url: "{{ route('') }}"--}}
+                {{--})--}}
+            })
+        })
+    </script>
+{{--<script type="text/javascript" src="{{ asset('devblog/js/syntax/shCore.js') }}"></script>--}}
+{{--<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushCss.js') }}"></script>--}}
+{{--<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushJScript.js') }}"></script>--}}
+{{--<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushPerl.js') }}"></script>--}}
+{{--<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushPhp.js') }}"></script>--}}
+{{--<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushPlain.js') }}"></script>--}}
+{{--<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushPython.js') }}"></script>--}}
+{{--<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushRuby.js') }}"></script>--}}
+{{--<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushSql.js') }}"></script>--}}
+{{--<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushVb.js') }}"></script>--}}
+{{--<script type="text/javascript" src="{{ asset('devblog/js/syntax/shBrushXml.js') }}"></script>--}}
 
 <!-- Syntax Highlighter Call Function -->
 <script type="text/javascript">
     SyntaxHighlighter.config.clipboardSwf ="{{ asset('js/syntax/clipboard.swf') }}";
     SyntaxHighlighter.all();
 </script>
-
-
+@endsection
 </body>
 </html>

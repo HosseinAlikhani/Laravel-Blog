@@ -20,6 +20,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('devblog/css/plugin.css') }}">
     <!-- Main CSS Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{ asset('devblog/css/style.css') }}">
+
+{{--    <link rel="stylesheet" href="https://cdn.rtlcss.com/bootstrap/v4.2.1/css/bootstrap.min.css" integrity="sha384-vus3nQHTD+5mpDiZ4rkEPlnkcyTP+49BhJ4wJeJunw06ZAp+wzzeBPUXr42fi8If" crossorigin="anonymous">--}}
+
     <!-- Google Web Fonts  -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
     <!-- HTML5 shiv and Respond.js support IE8 or Older for HTML5 elements and media queries -->
