@@ -29,7 +29,6 @@ class BaseEntitiy extends Controller
     }
     public function check($data)
     {
-        dd($data);
         $sum = $this->model;
         foreach ($data as $key => $value){
             $sum = $sum->where($key, $value);

@@ -33,8 +33,7 @@ class CommentReplyController extends BaseEntitiy
     }
     public function postCommentReplies()
     {
-        $d = $this->variable($this->request->all());
-        $dd = $this->check($d);
+        $this->variable($this->check($this->request->all()));
         if ($this->check($this->variable($this->request->all()))){
             return $this->responseMessage(['message' => $this->message('submited')],423);
         }else{
@@ -50,7 +49,7 @@ class CommentReplyController extends BaseEntitiy
         if ($this->check($this->variable($this->request->all()))){
             return $this->responseMessage(['message' => $this->message('submited')],423);
         }else{
-            if ($this->update($this->request->comment_reply_id, $this->variable($this->request->all()))){
+            if ($this->update($this->request->reply_comment_id, $this->variable($this->request->all()))){
                 return $this->responseMessage(['message' => $this->message('submitok')],200);
             }else{
                 return $this->responseMessage(['message' => $this->message('submitno')],423);
@@ -59,7 +58,7 @@ class CommentReplyController extends BaseEntitiy
     }
     public function deleteCommentReplies()
     {
-        if ($this->delete($this->request->comment_reply_id)){
+        if ($this->delete($this->request->reply_comment_id)){
             return $this->responseMessage(['message' => $this->message('deleteok')],200);
         }else{
             return $this->responseMessage(['message' => $this->message('deleteno')],423);
