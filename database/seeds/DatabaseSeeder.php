@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name'  =>  'd3cr33',
             'email' =>  'd3cr33@gmail.com',
+            'pic'   =>  '/storage/user/avatar.png',
             'password'  =>  Hash::make('123456789'),
         ]);
     }
