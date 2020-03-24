@@ -17,7 +17,7 @@ class CommentController extends BaseEntitiy
     {
         return [
             'comment'   =>  $data['comment'],
-            'user_id'   =>  $data['user_id'],
+            'user_id'   =>  1,
         ];
     }
     public function getComments()
@@ -28,7 +28,7 @@ class CommentController extends BaseEntitiy
     public function postComments()
     {
         if ($this->check($this->request->all())){
-            return $this->responseMessage(['message' => $this->message('submited')],200);
+            return $this->responseMessage(['message' => $this->message('submited')],423);
         }else{
             if ($this->create($this->variable($this->request->all()))){
                 return $this->responseMessage(['message' => $this->message('submitok')],200);
