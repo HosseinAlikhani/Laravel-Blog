@@ -17,7 +17,7 @@ class CommentReplyController extends BaseEntitiy
     public function variable($data)
     {
         return [
-            'reply_comment'   =>  $data['reply_comment'],
+            'comment_reply'   =>  $data['comment_reply'],
             'comment_id'    =>  $data['comment_id'],
             'user_id'   =>  1,
         ];
