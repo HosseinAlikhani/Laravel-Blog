@@ -3,10 +3,13 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('devblog/css/syntax/shCore.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('devblog/css/syntax/shThemeDefault.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('devblog/css/comment.css') }}">
+    <link href="{{ asset('panel2/plugin/toast/dist/toasted.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('panel2/plugin/toast/src/sass/toast.scss') }}" rel="stylesheet"/>
+    <link href="{{ asset('src/css/model.css') }}" rel="stylesheet"/>
 @endsection
+
 @section('content')
     <div class="row">
-
         <div class="sub-title">
             <a href="{{ route('blog') }}" title="Go to Home Page"><h2>Back Home</h2></a>
             <a href="#comment" class="smoth-scroll"><i class="icon-bubbles"></i></a>
@@ -36,69 +39,55 @@
         <div class="comments-container">
             <ul id="comments-list" class="comments-list">
                 <li>
+                    @foreach($comment as $comments)
                     <div class="comment-main-level">
                         <!-- Avatar -->
-                        <div class="comment-avatar"><img src="{{ asset('/storage/user/avatar.png') }}" alt=""></div>
+                        <div class="comment-avatar"><img src="{{ $comments->user->pic }}" alt=""></div>
                         <!-- Contenedor del Comentario -->
                         <div class="comment-box">
                             <div class="comment-head">
-                                <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
-                                <span>hace 20 minutos</span>
+                                <h6 class="comment-name by-author"><a href="#">{{ $comments->user->name }}</a></h6>
+                                <span>{{ $comments->user->created_at }}</span>
                                 <i class="fa fa-reply"></i>
                                 <i class="fa fa-heart"></i>
                             </div>
                             <div class="comment-content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+                               {{ $comments->comment }}
                             </div>
                         </div>
                     </div>
-                    <!-- Respuestas de los comentarios -->
-                    <ul class="comments-list reply-list">
-                        <li>
-                            <!-- Avatar -->
-                            <div class="comment-avatar"><img src="{{ asset('/storage/user/avatar.png') }}" alt=""></div>
-                            <!-- Contenedor del Comentario -->
-                            <div class="comment-box">
-                                <div class="comment-head">
-                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
-                                    <span>hace 10 minutos</span>
-                                    <i class="fa fa-reply"></i>
-                                    <i class="fa fa-heart"></i>
-                                </div>
-                                <div class="comment-content">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-                                </div>
-                            </div>
-                        </li>
 
-                        <li>
-                            <!-- Avatar -->
-                            <div class="comment-avatar"><img src="{{ asset('/storage/user/avatar.png') }}" alt=""></div>
-                            <!-- Contenedor del Comentario -->
-                            <div class="comment-box">
-                                <div class="comment-head">
-                                    <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
-                                    <span>hace 10 minutos</span>
-                                    <i class="fa fa-reply"></i>
-                                    <i class="fa fa-heart"></i>
-                                </div>
-                                <div class="comment-content">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
+
+                        @if($comments->commentReply->first())
+                            @foreach($comments->commentReply as $reply)
+                            <ul class="comments-list reply-list">
+                                <li>
+                                    <!-- Avatar -->
+                                    <div class="comment-avatar"><img src="{{ $reply->user->pic }}" alt=""></div>
+                                    <!-- Contenedor del Comentario -->
+                                    <div class="comment-box">
+                                        <div class="comment-head">
+                                            <h6 class="comment-name"><a href="#">{{ $reply->user->name }}</a></h6>
+                                            <span>{{ $reply->created_at }}</span>
+                                            <i class="fa fa-reply"></i>
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                        <div class="comment-content">
+                                            {{ $reply->reply_comment }}
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            @endforeach
+                    @endif
+                    @endforeach
+                    <!-- Respuestas de los comentarios -->
                 </li>
             </ul>
-            <form id="comment-submit">
-                <textarea name="comment" style="height: 25%; width: 100%;"></textarea>
-                <p></p>
-                 <button class="load-more-button" id="submit-post" type="button">
-                     Submit
-                 </button>
-            </form>
         </div>
-<div>
+        <button onclick="document.getElementById('comment-model').style.display='block'" class="btn-block btn-primary btn-lg" >Submit Comment</button>
+
+        <div>
 {{--        <div class="col-md-12 content-page">--}}
 {{--            <div class="col-md-12 blog-post">--}}
 {{--                <!-- Post Headline Start -->--}}
@@ -351,9 +340,34 @@
 {{--        </div>--}}
 </div>
     </div>
+
+
+    <div id="comment-model" class="modal">
+
+        <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('comment-model').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <img src="img_avatar2.png" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="container">
+                <form id="comment-reply-form">
+                    <textarea name="comment" id="comment" style="height: 25%; width: 100%;"></textarea>
+                    <p></p>
+                    <button class="load-more-button" id="submit-comment" type="button">
+                        Submit
+                    </button>
+                </form>
+            </div>
+
+            <div class="container" style="background-color:#f1f1f1">
+                <button type="button" onclick="document.getElementById('comment-model').style.display='none'" class="cancelbtn">Cancel</button>
+                <span class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+        </form>
+    </div>
 @endsection
 
-<!-- Syntax Highlighter Javascript File  -->
 @section('custom')
     <!-- Endpage Box (Popup When Scroll Down) Start -->
     <div id="scroll-down-popup" class="endpage-box">
@@ -363,12 +377,30 @@
     <!-- Endpage Box (Popup When Scroll Down) End -->
 @endsection
 @section('script')
+    <script src="{{ asset('panel2/plugin/toast/dist/toasted.js') }}"></script>
+    <link href="{{ asset('src/css/model.css') }}" rel="stylesheet"/>
     <script>
         $(function () {
-            $('#comment-submit').click(function () {
-                {{--$.ajax({--}}
-                {{--    url: "{{ route('') }}"--}}
-                {{--})--}}
+            $('#submit-comment').click(function () {
+                const toasted = new Toasted({
+                    color:  '#fafafa',
+                    position: "bottom-left",
+                    duration: 6000,
+                });
+                var comment = $('#comment').val();
+                $.ajax({
+                    url: "{{ route('postComment') }}",
+                    type: "POST",
+                    data:{
+                        'comment': comment,
+                    },
+                    success: function(data){
+                        toasted.success(data.message)
+                    },
+                    error: function(data){
+                        toasted.error(data.responseJSON.message);
+                    }
+                })
             })
         })
     </script>
