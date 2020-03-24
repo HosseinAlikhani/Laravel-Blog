@@ -24,18 +24,18 @@ class CommentReplyRequest extends BaseRequest
     {
         if ($this->method() == 'POST'){
             return [
-                'reply_comment'    =>  'required',
+                'comment_reply'    =>  'required',
                 'comment_id'    =>  'required',
             ];
         }elseif ($this->method() == 'PATCH'){
             return [
-                'reply_comment'    =>  'required',
+                'comment_reply'    =>  'required',
                 'comment_id'    =>  'required',
-                'reply_comment_id' =>  'required',
+                'comment_reply_id' =>  'required',
             ];
         }elseif ($this->method() == 'DELETE'){
             return [
-                'reply_comment_id' =>  'required',
+                'comment_reply_id' =>  'required',
             ];
         }
         return [
