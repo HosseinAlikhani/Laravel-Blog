@@ -42,7 +42,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapApiRoutes();
+//        $this->mapApiRoutes();
 
         $this->mapWebRoutes();
 
@@ -60,7 +60,11 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware('api')
              ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+             ->group( function(){
+                require base_path('routes/blog.php');
+                require base_path('routes/profile.php');
+                require base_path('routes/comment.php');
+             });
     }
 
     /**
@@ -72,6 +76,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapApiRoutes()
     {
+
         Route::
 //                prefix('api')
              middleware('web')
