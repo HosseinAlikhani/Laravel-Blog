@@ -33,15 +33,10 @@ class CommentReplyController extends BaseEntitiy
     }
     public function postCommentReplies()
     {
-        $this->variable($this->check($this->request->all()));
-        if ($this->check($this->variable($this->request->all()))){
-            return $this->responseMessage(['message' => $this->message('submited')],423);
+        if ($this->create($this->variable($this->request->all()))){
+            return $this->responseMessage(['message' => $this->message('submitok')],200);
         }else{
-            if ($this->create($this->variable($this->request->all()))){
-                return $this->responseMessage(['message' => $this->message('submitok')],200);
-            }else{
-                return $this->responseMessage(['message' => $this->message('submitno')],423);
-            }
+            return $this->responseMessage(['message' => $this->message('submitno')],423);
         }
     }
     public function patchCommentReplies()
