@@ -1952,3 +1952,18 @@ blockquote {
 .uipasta-credit a:hover {
     color: #333333;
 }
+
+.post-tag a{
+    float:right;
+    border:1px solid #dddddd;
+    border-radius: 5px;
+    background: #608B4E;
+    color: white;
+    margin-left: 3px;
+    margin-right: 3px;
+    padding: 5px 5px;
+    cursor: pointer;
+}
+.post-tag a:hover{
+    background: #0b2e13;
+}

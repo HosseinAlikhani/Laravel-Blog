@@ -6,33 +6,58 @@
     <link href="{{ asset('panel2/plugin/toast/dist/toasted.min.css') }}" rel="stylesheet"/>
     <link href="{{ asset('panel2/plugin/toast/src/sass/toast.scss') }}" rel="stylesheet"/>
     <link href="{{ asset('src/css/model.css') }}" rel="stylesheet"/>
+    <style>
+        .post-tag a{
+            float:right;
+            border:1px solid #dddddd;
+            border-radius: 5px;
+            background: #608B4E;
+            color: white;
+            margin-left: 3px;
+            margin-right: 3px;
+            padding: 5px 5px;
+            cursor: pointer;
+        }
+        .post-tag a:hover{
+            background: #0b2e13;
+        }
+
+    </style>
 @endsection
 
 @section('content')
-    <div class="row">
+{{--    <div class="row">--}}
+
         <div class="sub-title">
             <a href="{{ route('blog') }}" title="Go to Home Page"><h2>Back Home</h2></a>
             <a href="#comment" class="smoth-scroll"><i class="icon-bubbles"></i></a>
         </div>
+
         <div class="col-md-12 content-page">
+
             <div class="col-md-12 blog-post">
+                <div class="post-tag">
+                    @foreach(explode(',', $post->tags) as $tag)
+                        <a href="#"> {{ $tag }} </a>
+                    @endforeach
+                </div>
                 <div class="post-title">
                     <h1>{{ $post->title }}</h1>
                 </div>
+
                 <div class="post-info">
                     <span>{{ $post->created_at }} / by <a href="#" target="_blank">{{ $post->user_id }}</a></span>
                 </div>
 
-                <div class="post-image margin-top-40 margin-bottom-40">
-                    <img src="{{ asset($post->pic) }}" alt="">
+{{--                <div class="post-image margin-top-40 margin-bottom-40">--}}
+{{--                    <img src="{{ asset($post->pic) }}" alt="">--}}
 {{--                    <p>Image source from <a href="#" target="_blank">Link</a></p>--}}
-                </div>
-
+{{--                </div>--}}
                 <div class="post-content">
                      <p> {!! $post->long_description !!}</p>
                 </div>
-
             </div>
+
         </div>
 
         <!-- Contenedor Principal -->
@@ -100,7 +125,8 @@
                 <button id="submit-comment" type="button">Submit</button>
             </form>
         </div>
-    </div>
+{{--    </div>--}}
+
 @endsection
 
 @section('custom')
