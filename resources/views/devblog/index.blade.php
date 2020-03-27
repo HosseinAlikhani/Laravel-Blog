@@ -103,7 +103,7 @@
                 <div class="col-md-12 page-body margin-top-50 footer">
                     <footer>
                         <ul class="menu-link">
-                            <li><a href="{{ route('blog') }}">Home</a></li>
+                            <li><a href="{{ route('blog') }}">Blog</a></li>
                             <li><a href="{{ route('about') }}">About</a></li>
                             <li><a href="{{ route('work') }}">Work</a></li>
                             <li><a href="{{ asset('contact') }}">Contact</a></li>
