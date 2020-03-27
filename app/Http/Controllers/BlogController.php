@@ -9,7 +9,7 @@ class BlogController extends Controller
     {
         return app(PostController::class);
     }
-    public function view()
+    public function blog()
     {
         $post = $this->post()->findAll();
         $comment = $this->commentController()->findAll();
@@ -18,8 +18,12 @@ class BlogController extends Controller
     public function single($id)
     {
         $post = $this->post()->findOne($id);
-        $comment = $this->commentController()->findAll();
-        return view('devblog.single', compact(['post', 'comment']));
+        if (!empty($post)){
+            $comment = $this->commentController()->findAll();
+            return view('devblog.single', compact(['post', 'comment']));
+        }else{
+            abort(404);
+        }
     }
     public function about()
     {
