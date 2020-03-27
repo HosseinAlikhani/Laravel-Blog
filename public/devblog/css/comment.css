@@ -226,6 +226,10 @@
     border-radius: 3px;
 }
 
+.comment-box-form{
+    display: none;
+}
+
 /** =====================
  * Responsive
  ========================*/
