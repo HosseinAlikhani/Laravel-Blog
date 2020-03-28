@@ -19,6 +19,8 @@
     <link href="{{ asset('src/mdb-blog/css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="{{ asset('src/mdb-blog/css/mdb.min.css') }}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{{ asset('src/fontawesome/css/all.css') }}" rel="stylesheet">
 </head>
 
 

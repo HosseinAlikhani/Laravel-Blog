@@ -9,6 +9,7 @@ html{
 
 .blog-section {
     border:1px solid #dddddd;
+    border-radius: 5px;
     box-shadow: #d0e9c6;
     padding:50px;
     direction: rtl;
