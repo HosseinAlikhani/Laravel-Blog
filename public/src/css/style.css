@@ -1,0 +1,26 @@
+@font-face {
+    font-family: vazir ;
+    src: url("../font/vazir/Vazir.woff");
+}
+html{
+    font-family: Vazir;
+    direction: rtl;
+}
+
+.blog-section {
+    border:1px solid #dddddd;
+    box-shadow: #d0e9c6;
+    padding:50px;
+    direction: rtl;
+}
+
+.blog-section-header {
+    padding:10px 5px 10px 5px;
+    margin-top: 10px;
+    border-bottom: 1px solid #607d8b;
+}
+
+.blog-section-content {
+    margin-top:10px;
+    margin-bottom: 10px;
+}

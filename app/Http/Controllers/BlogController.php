@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 
 class BlogController extends Controller
 {
+    public function home()
+    {
+        return view('blog.home');
+    }
     public function post()
     {
         return app(PostController::class);

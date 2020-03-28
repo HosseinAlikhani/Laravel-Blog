@@ -13,12 +13,24 @@
     <title> D3CR33 - Personal Blog Template</title>
 
     <!-- Main CSS Stylesheet -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('devblog/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('src/css/style.css') }}">
+
+    <!-- Main Bootstrap -->
+    <link href="{{ asset('src/mdb-blog/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="{{ asset('src/mdb-blog/css/mdb.min.css') }}" rel="stylesheet">
 </head>
 
 
 <body>
-
-<script type="text/javascript" src="{{ asset('devblog/js/jquery.min.js') }}"></script>
+@yield('content')
+<!-- JQuery -->
+<script type="text/javascript" src="{{ asset('src/mdb-blog/js/jquery-3.4.1.min.js') }}"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="{{ asset('src/mdb-blog/js/popper.min.js') }}"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="{{ asset('src/mdb-blog/js/bootstrap.min.js') }}"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="{{ asset('src/mdb-blog/js/mdb.min.js') }}"></script>
 </body>
 </html>
