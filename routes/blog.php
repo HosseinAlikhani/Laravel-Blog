@@ -8,3 +8,6 @@ Route::prefix('')->group(function(){
     Route::get('home', 'BlogController@home')->name('home');
 });
 
+Route::get('single', function (){
+    return view('blog.single');
+});
