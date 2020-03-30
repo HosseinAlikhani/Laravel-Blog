@@ -28,8 +28,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
-    <link href="{{ asset('panel2/plugin/toast/dist/toasted.min.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('panel2/plugin/toast/src/sass/toast.scss') }}" rel="stylesheet"/>
+    <link href="{{ asset('src/plugin/toast/dist/toasted.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('src/plugin/toast/src/sass/toast.scss') }}" rel="stylesheet"/>
     @yield('css')
    <style>
     #weatherWidget .currentDesc {
@@ -240,7 +240,7 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/full  calendar.min.js"></script>
     <script src="{{ asset('panel2/assets/js/init/fullcalendar-init.js') }}"></script>
-    <script src="{{ asset('panel2/plugin/toast/dist/toasted.js') }}"></script>
+    <script src="{{ asset('src/plugin/toast/dist/toasted.js') }}"></script>
     @yield('script')
 
     <!--Local Stuff-->

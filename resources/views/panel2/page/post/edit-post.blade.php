@@ -1,7 +1,7 @@
 @extends('panel2.index')
 @section('css')
-    <link href="{{ asset('panel2/plugin/taginput/tagsinput.css') }}" rel="stylesheet"/>
-    <script src="{{ asset('plugin/ckeditor/ckeditor.js') }}"></script>
+    <link href="{{ asset('src/plugin/taginput/tagsinput.css') }}" rel="stylesheet"/>
+    <script src="{{ asset('src/plugin/ckeditor/ckeditor.js') }}"></script>
 @endsection
 @section('content')
     <div class="card">
@@ -51,7 +51,7 @@
 
 @endsection
 @section('script')
-    <script src="{{ asset('panel2/plugin/taginput/tagsinput.js') }}"></script>
+    <script src="{{ asset('src/plugin/taginput/tagsinput.js') }}"></script>
     <script>
         CKEDITOR.replace( 'editor1' );
         $(function(){

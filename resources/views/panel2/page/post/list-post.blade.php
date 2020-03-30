@@ -1,6 +1,6 @@
 @extends('panel2.index')
 @section('css')
-    <link href="{{ asset('panel2/plugin/taginput/tagsinput.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('src/plugin/taginput/tagsinput.css') }}" rel="stylesheet"/>
     <style>
         .table tbody tr:hover td, .table tbody tr:hover th {
             background-color: #d2d2d2;

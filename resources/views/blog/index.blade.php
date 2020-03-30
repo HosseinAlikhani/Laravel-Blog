@@ -25,7 +25,21 @@
 
 
 <body>
-@yield('content')
+
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="blog-section">
+                @yield('content')
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="alert alert-danger">
+                hello fucking bitch
+            </div>
+        </div>
+    </div>
+</div>
 <!-- JQuery -->
 <script type="text/javascript" src="{{ asset('src/mdb-blog/js/jquery-3.4.1.min.js') }}"></script>
 <!-- Bootstrap tooltips -->
