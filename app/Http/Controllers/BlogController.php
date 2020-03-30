@@ -17,7 +17,7 @@ class BlogController extends Controller
     {
         $post = $this->post()->findAll();
         $comment = $this->commentController()->findAll();
-        return view('devblog.blog', compact(['post', 'comment']));
+        return view('blog.blog', compact(['post', 'comment']));
     }
     public function single($id)
     {
