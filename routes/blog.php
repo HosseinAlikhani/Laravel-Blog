@@ -5,7 +5,6 @@ Route::prefix('')->group(function(){
     Route::get('about', 'BlogController@about')->name('about');
     Route::get('contact', 'BlogController@contact')->name('contact');
     Route::get('work', 'BlogController@work')->name('work');
-    Route::get('home', 'BlogController@home')->name('home');
 });
 
 Route::get('single', function (){
