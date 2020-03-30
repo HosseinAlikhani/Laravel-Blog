@@ -8,7 +8,7 @@
                     <div class="mask rgba-white-slight"></div>
                 </a>
             </div>
-            <a class="btn-floating btn-action ml-auto mr-4 mdb-color lighten-3"><i
+            <a href="{{ route('post', ['id' => $posts->id]) }}" class="btn-floating btn-action ml-auto mr-4 mdb-color lighten-3"><i
                     class="fas fa-chevron-right pl-1"></i></a>
             <div class="card-body">
                 <h4 class="card-title"> {{ $posts->title }}</h4>
