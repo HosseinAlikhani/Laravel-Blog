@@ -18,6 +18,7 @@ class CommentController extends BaseEntitiy
         return [
             'comment'   =>  $data['comment'],
             'user_id'   =>  1,
+            'post_id'   =>  $data['post_id'],
         ];
     }
     public function getComments()

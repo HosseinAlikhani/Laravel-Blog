@@ -1,8 +1,4 @@
 @extends('blog.index');
-@section('css')
-    <link href="{{ asset('panel2/plugin/toast/dist/toasted.min.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('panel2/plugin/toast/src/sass/toast.scss') }}" rel="stylesheet"/>
-@endsection
 @section('content')
 
 <img class="img-fluid rounded" src=" {{ asset($post->pic) }}"/>
@@ -54,36 +50,15 @@
 </section>
 <section class="mb-4 wow fadeIn" data-wow-delay="0.2s">
     <h3 class="font-weight-bold text-center my-5">Leave a reply</h3>
-    <form class="">
-        <div class="row">
-            <div class="col-lg-6 col-md-12 mb-6">
-                <div class="input-group md-form form-sm form-3 pl-0">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text white black-text" id="basic-addon8">1</span>
-                    </div>
-                    <input type="text" class="form-control mt-0 black-border rgba-white-strong"
-                           placeholder="Name" aria-describedby="basic-addon9">
-                </div>
+    <form id="comment-form" class="">
+        <div class="col-12 mt-1">
+            <div class="form-group basic-textarea rounded-corners">
+                <input type="hidden"  name="post_id" value="{{ $post->id }}"/>
+                <textarea class="form-control" id="exampleFormControlTextarea6" name="comment" rows="5"
+                      placeholder="Write something here..."></textarea>
             </div>
-            <div class="col-lg-6 col-md-6 mb-6">
-                <div class="input-group md-form form-sm form-3 pl-0">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text white black-text" id="basic-addon9">2</span>
-                    </div>
-                    <input type="text" class="form-control mt-0 black-border rgba-white-strong"
-                           placeholder="Email" aria-describedby="basic-addon9">
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 mt-1">
-                <div class="form-group basic-textarea rounded-corners">
-                    <textarea class="form-control" id="exampleFormControlTextarea6" rows="5"
-                          placeholder="Write something here..."></textarea>
-                </div>
-                <div class="text-right">
-                    <button type="button" id="submit-comment" class="btn btn-grey btn-sm">Submit</button>
-                </div>
+            <div class="text-right">
+                <button type="button" id="submit-comment" class="btn btn-grey btn-sm">Submit</button>
             </div>
         </div>
     </form>
@@ -130,11 +105,7 @@
         // }
 
         $(function(){
-            const toasted = new Toasted({
-                color: '#fafafa',
-                position: "bottom-left",
-                duration: 6000,
-            });
+            const toasted = new Toasted;
             $('#submit-comment').on('click', function(){
                 var comment = $('#comment-form')[0];
                 var formData = new FormData(comment);

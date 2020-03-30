@@ -21,6 +21,9 @@
     <link href="{{ asset('src/mdb-blog/css/mdb.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="{{ asset('src/fontawesome/css/all.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('panel2/plugin/toast/dist/toasted.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('panel2/plugin/toast/src/sass/toast.scss') }}" rel="stylesheet"/>
     @yield('css')
 </head>
 
