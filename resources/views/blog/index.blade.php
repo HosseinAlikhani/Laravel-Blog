@@ -31,6 +31,17 @@
 <body>
 
 <div class="container pt-5">
+    <ul class="nav justify-content-center grey lighten-4 py-4">
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('blog') }}">Blog</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('contact') }}">Contact</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('aboutus') }}">Aboutus</a>
+        </li>
+    </ul>
     <div class="row">
         <div class="col-lg-9">
             <div class="blog-section">
