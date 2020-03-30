@@ -5,7 +5,16 @@ namespace App\Model;
 
 class Post extends BaseModel
 {
-    protected $fillable = [
-        'title', 'tags', 'pic', 'long_description', 'short_description', 'user_id',
-    ];
+    public function comment()
+    {
+        return $this->hasMany(Comment::class,
+            'post_id',
+            'id');
+    }
+    public function user()
+    {
+        return $this->hasOne(User::class,
+            'id',
+            'user_id');
+    }
 }
