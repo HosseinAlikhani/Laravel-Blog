@@ -48,7 +48,7 @@
 <section class="mb-4 wow fadeIn" data-wow-delay="0.2s">
     <h3 class="font-weight-bold text-center my-5">Leave a reply</h3>
     <div class="row">
-        <div class="col-lg-4 col-md-12 mb-4">
+        <div class="col-lg-6 col-md-12 mb-6">
             <div class="input-group md-form form-sm form-3 pl-0">
                 <div class="input-group-prepend">
                     <span class="input-group-text white black-text" id="basic-addon8">1</span>
@@ -57,22 +57,13 @@
                        placeholder="Name" aria-describedby="basic-addon9">
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-lg-6 col-md-6 mb-6">
             <div class="input-group md-form form-sm form-3 pl-0">
                 <div class="input-group-prepend">
                     <span class="input-group-text white black-text" id="basic-addon9">2</span>
                 </div>
                 <input type="text" class="form-control mt-0 black-border rgba-white-strong"
                        placeholder="Email" aria-describedby="basic-addon9">
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="input-group md-form form-sm form-3 pl-0">
-                <div class="input-group-prepend">
-                    <span class="input-group-text white black-text" id="basic-addon10">3</span>
-                </div>
-                <input type="text" class="form-control mt-0 black-border rgba-white-strong"
-                       placeholder="Website" aria-describedby="basic-addon9">
             </div>
         </div>
     </div>
