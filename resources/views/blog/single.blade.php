@@ -28,6 +28,9 @@
                      class="avatar rounded-circle z-depth-1-half" alt="sample image">
             </div>
             <div class="col-sm-10 col-12">
+                <span class="d-flex justify-content-sm-end">
+                    <a href="#"> <i class="fa fa-reply"></i> </a>
+                </span>
                 <a>
                     <h5 class="user-name font-weight-bold">{{ $comments->user->name }}</h5>
                 </a>
