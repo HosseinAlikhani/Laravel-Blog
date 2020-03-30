@@ -1,4 +1,8 @@
 @extends('blog.index');
+@section('css')
+    <link href="{{ asset('panel2/plugin/toast/dist/toasted.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('panel2/plugin/toast/src/sass/toast.scss') }}" rel="stylesheet"/>
+@endsection
 @section('content')
 
 <img class="img-fluid rounded" src=" {{ asset($post->pic) }}"/>
@@ -29,7 +33,7 @@
             </div>
             <div class="col-sm-10 col-12">
                 <span class="d-flex justify-content-sm-end">
-                    <a href="#"> <i class="fa fa-reply"></i> </a>
+                    <a href="#" onclick="commentReply()"> <i class="fa fa-reply"></i> </a>
                 </span>
                 <a>
                     <h5 class="user-name font-weight-bold">{{ $comments->user->name }}</h5>
@@ -50,37 +54,105 @@
 </section>
 <section class="mb-4 wow fadeIn" data-wow-delay="0.2s">
     <h3 class="font-weight-bold text-center my-5">Leave a reply</h3>
-    <div class="row">
-        <div class="col-lg-6 col-md-12 mb-6">
-            <div class="input-group md-form form-sm form-3 pl-0">
-                <div class="input-group-prepend">
-                    <span class="input-group-text white black-text" id="basic-addon8">1</span>
+    <form class="">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 mb-6">
+                <div class="input-group md-form form-sm form-3 pl-0">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text white black-text" id="basic-addon8">1</span>
+                    </div>
+                    <input type="text" class="form-control mt-0 black-border rgba-white-strong"
+                           placeholder="Name" aria-describedby="basic-addon9">
                 </div>
-                <input type="text" class="form-control mt-0 black-border rgba-white-strong"
-                       placeholder="Name" aria-describedby="basic-addon9">
             </div>
-        </div>
-        <div class="col-lg-6 col-md-6 mb-6">
-            <div class="input-group md-form form-sm form-3 pl-0">
-                <div class="input-group-prepend">
-                    <span class="input-group-text white black-text" id="basic-addon9">2</span>
+            <div class="col-lg-6 col-md-6 mb-6">
+                <div class="input-group md-form form-sm form-3 pl-0">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text white black-text" id="basic-addon9">2</span>
+                    </div>
+                    <input type="text" class="form-control mt-0 black-border rgba-white-strong"
+                           placeholder="Email" aria-describedby="basic-addon9">
                 </div>
-                <input type="text" class="form-control mt-0 black-border rgba-white-strong"
-                       placeholder="Email" aria-describedby="basic-addon9">
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-12 mt-1">
-            <div class="form-group basic-textarea rounded-corners">
-                <textarea class="form-control" id="exampleFormControlTextarea6" rows="5"
-                      placeholder="Write something here..."></textarea>
-            </div>
-            <div class="text-right">
-                <button class="btn btn-grey btn-sm">Submit</button>
+        <div class="row">
+            <div class="col-12 mt-1">
+                <div class="form-group basic-textarea rounded-corners">
+                    <textarea class="form-control" id="exampleFormControlTextarea6" rows="5"
+                          placeholder="Write something here..."></textarea>
+                </div>
+                <div class="text-right">
+                    <button type="button" id="submit-comment" class="btn btn-grey btn-sm">Submit</button>
+                </div>
             </div>
         </div>
-    </div>
-
+    </form>
 </section>
 @endsection
+
+@section('script')
+    <script src="{{ asset('src/plugin/toast/dist/toasted.js') }}"></script>
+    <script>
+        // const toasted = new Toasted({
+        //     color: '#fafafa',
+        //     position: "bottom-left",
+        //     duration: 6000,
+        // });
+        // function commentReply(data) {
+        //     console.log('u have been hacked sumibt');
+        //     $('#comment-reply-form_'+data).css('display', 'block');
+            {{--$('#comment_reply_id_'+data).val(data);--}}
+            {{--$('#submit-comment_'+data).click(function(){--}}
+            {{--    const toasted = new Toasted({--}}
+            {{--        color: '#fafafa',--}}
+            {{--        position: "bottom-left",--}}
+            {{--        duration: 6000,--}}
+            {{--    });--}}
+            {{--    var comment = $('#comment-reply-form_'+data)[0];--}}
+            {{--    var formData = new FormData(comment);--}}
+            {{--    $.ajax({--}}
+            {{--        url: " {{ route('postCommentReply') }}",--}}
+            {{--        type: "POST",--}}
+            {{--        data: formData,--}}
+            {{--        processData: false,--}}
+            {{--        contentType: false,--}}
+            {{--        success: function(data){--}}
+            {{--            toasted.success(data.message);--}}
+            {{--        },--}}
+            {{--        error: function(data){--}}
+            {{--            toasted.error(data.responseJSON.message);--}}
+            {{--        }--}}
+            {{--    })--}}
+            {{--})--}}
+            {{--$('#cancel-comment_'+data).click(function(){--}}
+            {{--    $('#comment-reply-form_'+data).css('display', 'none');--}}
+            {{--})--}}
+        // }
+
+        $(function(){
+            const toasted = new Toasted({
+                color: '#fafafa',
+                position: "bottom-left",
+                duration: 6000,
+            });
+            $('#submit-comment').on('click', function(){
+                var comment = $('#comment-form')[0];
+                var formData = new FormData(comment);
+                $.ajax({
+                    url: " {{ route('postComment') }}",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(data){
+                        toasted.success(data.message);
+                    },
+                    error: function(data){
+                        toasted.error(data.responseJSON.message);
+                    }
+                })
+            });
+        });
+    </script>
+@endsection
+

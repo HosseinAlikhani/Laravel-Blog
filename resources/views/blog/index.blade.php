@@ -21,6 +21,7 @@
     <link href="{{ asset('src/mdb-blog/css/mdb.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->
     <link href="{{ asset('src/fontawesome/css/all.css') }}" rel="stylesheet">
+    @yield('css')
 </head>
 
 
@@ -48,5 +49,6 @@
 <script type="text/javascript" src="{{ asset('src/mdb-blog/js/bootstrap.min.js') }}"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="{{ asset('src/mdb-blog/js/mdb.min.js') }}"></script>
+@yield('script')
 </body>
 </html>

@@ -3,8 +3,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('devblog/css/syntax/shCore.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('devblog/css/syntax/shThemeDefault.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('devblog/css/comment.css') }}">
-    <link href="{{ asset('panel2/plugin/toast/dist/toasted.min.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('panel2/plugin/toast/src/sass/toast.scss') }}" rel="stylesheet"/>
+    <link href="{{ asset('src/plugin/toast/dist/toasted.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('src/plugin/toast/src/sass/toast.scss') }}" rel="stylesheet"/>
     <link href="{{ asset('src/css/model.css') }}" rel="stylesheet"/>
     <style>
         .post-tag a{
@@ -138,7 +138,7 @@
     <!-- Endpage Box (Popup When Scroll Down) End -->
 @endsection
 @section('script')
-    <script src="{{ asset('panel2/plugin/toast/dist/toasted.js') }}"></script>
+    <script src="{{ asset('src/plugin/toast/dist/toasted.js') }}"></script>
     <link href="{{ asset('src/css/model.css') }}" rel="stylesheet"/>
     <script>
         const toasted = new Toasted({
