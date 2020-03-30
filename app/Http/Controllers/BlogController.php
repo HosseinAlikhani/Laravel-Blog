@@ -5,10 +5,6 @@ namespace App\Http\Controllers;
 
 class BlogController extends Controller
 {
-    public function home()
-    {
-        return view('blog.home');
-    }
     public function post()
     {
         return app(PostController::class);
@@ -24,7 +20,7 @@ class BlogController extends Controller
         $post = $this->post()->findOne($id);
         if (!empty($post)){
             $comment = $this->commentController()->findAll();
-            return view('devblog.single', compact(['post', 'comment']));
+            return view('blog.single', compact(['post', 'comment']));
         }else{
             abort(404);
         }
