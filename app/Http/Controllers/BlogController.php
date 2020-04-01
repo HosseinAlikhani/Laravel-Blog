@@ -31,7 +31,7 @@ class BlogController extends Controller
     }
     public function contact()
     {
-        return view('devblog.contact');
+        return view('blog.contactus');
     }
 
     public function work()
