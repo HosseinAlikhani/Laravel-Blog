@@ -49,8 +49,8 @@
                             </div>
                             <div class="stat-content">
                                 <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">349</span></div>
-                                    <div class="stat-heading">Templates</div>
+                                    <div class="stat-text"><span class="count">{{ count($post) }}</span></div>
+                                    <div class="stat-heading">Posts</div>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                             <div class="stat-content">
                                 <div class="text-left dib">
                                     <div class="stat-text"><span class="count">2986</span></div>
-                                    <div class="stat-heading">Clients</div>
+                                    <div class="stat-heading">Users</div>
                                 </div>
                             </div>
                         </div>

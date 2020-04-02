@@ -84,6 +84,13 @@
                             <li><i class="fa fa-plus"></i><a href=" {{ route('addPost') }}">Add</a></li>
                         </ul>
                     </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Tag</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-bars"></i><a href=" {{ route('get.list.category') }}">List</a></li>
+                            <li><i class="fa fa-plus"></i><a href=" {{ route('get.create.category') }}">Add</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>

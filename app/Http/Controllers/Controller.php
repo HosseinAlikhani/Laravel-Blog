@@ -6,11 +6,6 @@ use Illuminate\Routing\Controller as BaseController;
 
 class Controller extends BaseController
 {
-    public function profile()
-    {
-        return view('panel2.home');
-    }
-
     public function responseMessage($data, $status)
     {
         if (!empty($data['key']) && !empty($data['key_value'])) {
