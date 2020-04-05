@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 class BaseEntitiy extends Controller
 {
     protected $model;
+    protected $request;
     public function create($data)
     {
         return $this->model->create($data);

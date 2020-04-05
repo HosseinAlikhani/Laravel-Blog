@@ -14,25 +14,32 @@
             </div>
         </div>
         <div class="card-body card-block">
-            <form id="add-post">
+            <form id="add-category">
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="Title"> Parent </label>
-                            <select type="text" class="form-control" id="post-title" name="parent_id">
-                                <option value="1"> numbre one </option>
-                                <option value="1"> numbre two </option>
+                            <select type="text" class="form-control" name="categories_id">
+                                @if(!empty($tags{0}))
+                                    <option value="0"> انتخاب کنید </option>
+                                    @foreach($tags as $tag)
+                                        <option value="{{ $tag->id }}"> {{ $tag->name }}</option>
+                                    @endforeach
+                                @else
+                                    <option value="0"> موردی یافت نشد </option>
+                                @endif
+
                             </select>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
                             <label for="Title"> Name </label>
-                            <input type="text" name="name" data-role="tagsinput">
+                            <input class="form-control" type="text" name="name">
                         </div>
                     </div>
                 </div>
-                <button class="btn btn-outline-success btn-sm" id="submit-post" type="button">
+                <button class="btn btn-outline-success btn-sm" id="submit-category" type="button">
                     <i class="fa fa-magic"></i>
                     Submit
                 </button>
@@ -44,27 +51,23 @@
 @section('script')
     <script src="{{ asset('src/plugin/taginput/tagsinput.js') }}"></script>
     <script>
-        CKEDITOR.replace( 'editor1' );
         $(function(){
-            $('#submit-post').click( function(event){
-                var editor = $('#editor1').val();
+            $('#submit-category').click( function(event){
                 const toasted = new Toasted({
                     color:  '#fafafa',
                     position: "bottom-center",
                     duration: 6000,
                 });
                 event.preventDefault();
-                var file = $('#add-post')[0];
+                var file = $('#add-category')[0];
                 var formData = new FormData(file);
-                var hos = CKEDITOR.instances['editor1'].getData();
-                formData.append('long_description',hos);
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
                 $.ajax({
-                    url: " {{ route('postPost') }}",
+                    url: " {{ route('post.create.category') }}",
                     type: "POST",
                     data: formData,
                     processData: false,

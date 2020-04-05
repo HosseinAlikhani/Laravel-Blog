@@ -93,4 +93,12 @@ class Controller extends BaseController
     {
         return app(CommentController::class);
     }
+    public function tagController()
+    {
+        return app(TagController::class);
+    }
+    public function categoryController()
+    {
+        return app(CategoryController::class);
+    }
 }

@@ -8,7 +8,8 @@ class CategoryController extends Controller
 {
     public function getCreate()
     {
-        return view('panel2.page.post.add-category');
+        $tags = $this->tagController()->findAll();
+        return view('panel2.page.post.add-category', compact(['tags']));
     }
     public function getList()
     {
@@ -19,8 +20,8 @@ class CategoryController extends Controller
     {
         return view('panel2.page.post.update-category');
     }
-    public function postCreate()
+    public function postCreate(Request $request)
     {
-
+        dd($request->all());
     }
 }
