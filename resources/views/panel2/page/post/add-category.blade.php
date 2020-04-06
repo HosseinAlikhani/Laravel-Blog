@@ -63,7 +63,7 @@
                 var formData = new FormData(file);
                 $.ajaxSetup({
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     }
                 });
                 $.ajax({
@@ -73,10 +73,11 @@
                     processData: false,
                     contentType: false,
                     success: function(data){
-                        toasted.success(data.message)
+                        toasted.success(data);
                     },
                     error: function(data){
-                        toasted.success(data.responseText)
+                        var message = JSON.parse(data.responseText);
+                        toasted.success(message.message);
                     },
                 });
             })
