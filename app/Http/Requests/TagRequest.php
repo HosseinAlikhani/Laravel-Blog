@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Foundation\Http\FormRequest;
 
-class CategoryRequest extends BaseRequest
+class TagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,11 +30,11 @@ class CategoryRequest extends BaseRequest
         }elseif ($this->method() == 'PATCH'){
             return [
                 'name'  =>  'required',
-                'category_id'   =>  'required',
+                'tag_id'   =>  'required',
             ];
         }elseif ($this->method() == 'DELETE'){
             return [
-                'category_id'   =>  'required',
+                'tag_id'   =>  'required',
             ];
         }
         return [
