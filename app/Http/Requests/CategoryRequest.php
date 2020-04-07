@@ -27,6 +27,7 @@ class CategoryRequest extends BaseRequest
                 'name'  =>  'required',
             ];
         }elseif ($this->method() == 'PATCH'){
+            dd($this->all());
             return [
                 'name'  =>  'required',
                 'category_id'   =>  'required',

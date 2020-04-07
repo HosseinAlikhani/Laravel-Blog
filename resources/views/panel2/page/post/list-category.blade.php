@@ -19,6 +19,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">name</th>
+                        <th scope="col">Parent ID</th>
                         <th scope="col">Created at</th>
                         <th scope="col"> Operation </th>
                     </tr>
@@ -28,10 +29,11 @@
                         <tr id="row-category-{{ $categories->id }}">
                             <th scope="row">{{ $categories->id }}</th>
                             <td><a href="{{ route('get.update.category', [$categories->id]) }}"> {{ $categories->name }} </a></td>
+                            <td> {{ $categories->categories_id }}</td>
                             <td> {{ $categories->created_at }}</td>
                             <td>
                                 <button class="btn" data-toggle="modal" data-target="#delete-modal" data-whatever="{{ $categories }}" > <i class="fa fa-trash-o"></i> </button>
-                                <button onclick="window.location.href = '{{ route('editPost', [$categories->id]) }}';" class="btn" data-toggle="tooltip" data-placement="left" title="Edit Post"> <i class="fa fa-edit"></i> </button>
+                                <button onclick="window.location.href = '{{ route('get.update.category', [$categories->id]) }}';" class="btn" data-toggle="tooltip" data-placement="left" title="Edit Post"> <i class="fa fa-edit"></i> </button>
                             </td>
                         </tr>
                     @endforeach

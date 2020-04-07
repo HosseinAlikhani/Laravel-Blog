@@ -16,7 +16,6 @@ class CategoryController extends BaseEntitiy
     public function getCreate()
     {
         $category = $this->findAll();
-        dd($category);
         return view('panel2.page.post.add-category', compact(['category']));
     }
     public function getList()
@@ -32,13 +31,34 @@ class CategoryController extends BaseEntitiy
             return response()->json($this->message('deleteno'));
         }
     }
-    public function getUpdate()
+    public function getUpdate($id)
     {
-        return view('panel2.page.post.update-category');
+        $categorylist = $this->findAll();
+        $category = $this->findOne($id);
+        if ($category->categories_id != 0 && $category->categories_id != null){
+            $category = [
+                'id'    =>  $category->id,
+                'name'  =>  $category->name,
+                'categories_id' =>  $category->categories_id,
+                'categories_name'   =>  $this->findOne($category->categories_id)->name,
+            ];
+        }
+        return view('panel2.page.post.update-category', compact(['category', 'categorylist']));
     }
-    public function postCreate(Request $request)
+    public function postCategory()
     {
         $is_create = $this->create($this->request->all());
+        if ($is_create){
+            return response()->json($this->message('submitok'));
+        }else{
+            return response()->json($this->message('submitno'));
+        }
+    }
+    public function patchCategory()
+    {
+        $data = $this->request->all();
+        unset($data['id']);
+        $is_create = $this->update($this->request->id, $data);
         if ($is_create){
             return response()->json($this->message('submitok'));
         }else{
