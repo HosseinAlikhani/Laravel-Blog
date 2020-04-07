@@ -27,6 +27,14 @@ class TagController extends BaseEntitiy
     {
         $taglist = $this->findAll();
         $tag = $this->findOne($id);
+        if ($tag->tags_id != 0 && $tag->tags_id != null){
+            $tag = [
+                'id'    =>  $tag->id,
+                'name'  =>  $tag->name,
+                'tags_id'   =>  $tag->tags_id,
+                'tags_name' =>  $this->findOne($tag->tags_id)->name,
+            ];
+        }
         return view('panel2.page.post.edit-tag', compact(['taglist', 'tag']));
     }
     public function postTag()
@@ -38,7 +46,16 @@ class TagController extends BaseEntitiy
             return response()->json($this->message('submitno'));
         }
     }
-
+    public function patchTag()
+    {
+        $data = $this->request->all();
+        unset($data['id']);
+        if ($this->update($this->request->id, $data)){
+            return response()->json($this->message('submitok'));
+        }else{
+            return response()->json($this->message('submitno'));
+        }
+    }
     public function deleteTag()
     {
         $is_create = $this->delete($this->request->tag_id);
