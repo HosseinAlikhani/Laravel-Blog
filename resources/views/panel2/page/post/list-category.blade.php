@@ -11,8 +11,7 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-start">
-                <button onclick="window.location.href = '{{ route('deletePost') }}';" class="m-3 btn btn-danger" id="delete-post"> Delete </button>
-                <button onclick="window.location.href = '{{ route('addPost') }}';" class="m-3 btn btn-info"> Add Post </button>
+                <button onclick="window.location.href = '{{ route('get.create.category') }}';" class="m-3 btn btn-info"> Add Category </button>
             </div>
             @if(!empty($category[0]))
                 <table dir="rtl" class="table table-hover ">
@@ -26,7 +25,7 @@
                     </thead>
                     <tbody>
                     @foreach($category as $categories)
-                        <tr id="row_post_{{ $categories->id }}">
+                        <tr id="row-category-{{ $categories->id }}">
                             <th scope="row">{{ $categories->id }}</th>
                             <td><a href="{{ route('getPosts', [$categories->id]) }}"> {{ $categories->name }} </a></td>
                             <td> {{ $categories->created_at }}</td>
@@ -57,7 +56,8 @@
                 </div>
                 <div class="modal-footer">
                     <div class="d-flex justify-content-start">
-                        <button type="button" data-dismiss="modal" class="btn btn-danger ml-2 mr-2" id="modal-button-delete" >Delete</button>
+                        <div id="modal-delete-button-section">
+                        </div>
                         <button type="button" data-dismiss="modal" class="btn btn-success ml-2 mr-2">Cancel</button>
                     </div>
                 </div>
@@ -67,66 +67,42 @@
 {{--    end delete modal --}}
 @endsection
 @section('script')
-
     <script>
         $(document).ready(function(){
-            {{--$('#delete-modal').on('shown.bs.modal', function (e) {--}}
-            {{--    var button = $(e.relatedTarget);--}}
-            {{--    button = button.data('whatever');--}}
-            {{--    $(this).find('#modal-delete-title').text('Delete ' + button.name);--}}
-            {{--    $(this).find('#modal-delete-message').text('Are u Sure To Delete ' + button.name + ' ? ');--}}
-            {{--    $('#modal-button-delete').click(function(){--}}
-            {{--        var url = "{{ route('get.delete.category', ":id") }}";--}}
-            {{--        url = url.replace(':id', button.id);--}}
-            {{--    });--}}
-            {{--});--}}
-            $.ajax({
-                'url': " {{ route('post.create.category') }}",
-                type: "POST",
-                data: {
-                    'name': 'hossein',
-                },
-                success: function(data){
-                    console.log('ok');
-                    console.log(postId);
-                    $('#row_post_'+postId.post_id).remove();
-                    toasted.success(data)
-                },
-                error: function(data){
-                    console.log('bad');
-                    toasted.success(data.responseText)
-                },
+            var toasted = new Toasted();
+            $('#delete-modal').on('show.bs.modal', function (e) {
+                var button = $(e.relatedTarget);
+                button = button.data('whatever');
+                $(this).find('#modal-delete-title').text('Delete ' + button.name);
+                $(this).find('#modal-delete-message').text('Are u Sure To Delete ' + button.name + ' ? ');
+                var deletebutton = '<button type="button" data-dismiss="modal" class="btn btn-danger ml-2 mr-2 modal-button-delete" id="modal-button-delete-'+ button.id +'" >Delete</button>';
+                $('#modal-delete-button-section').append(deletebutton);
+                $('#modal-button-delete-'+ button.id).click(function(){
+                    url = "{{ route('get.delete.category', ":id") }}";
+                    url = url.replace(':id', button.id);
+                    $.ajax({
+                        'url': url,
+                        type: "GET",
+                        data: {
+                            'name': 'hossein',
+                        },
+                        success: function(data){
+                            console.log('ok');
+                            $('#row-category-'+button.id).hide();
+                            toasted.success(data)
+                        },
+                        error: function(data){
+                            toasted.success(data.responseText)
+                        },
+                    });
+                    $('row-category-' + button.id).remove();
+                });
+            });
+            $('#delete-modal').on('hide.bs.modal', function(e){
+                $('.modal-button-delete').remove();
             })
-
         })
 
-        {{--$(document).ready(function(){--}}
-        {{--    var toasted = new Toasted();--}}
-        {{--    $('button').click(function(){--}}
-        {{--        var postId = {--}}
-        {{--            'post_id': $(this).attr('value'),--}}
-        {{--        };--}}
-        {{--        $.ajaxSetup({--}}
-        {{--            headers: {--}}
-        {{--                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-        {{--            }--}}
-        {{--        });--}}
-        {{--        $.ajax({--}}
-        {{--            'url': " {{ route('get.delete.category', 2) }}",--}}
-        {{--            data: postId,--}}
-        {{--            type: "get",--}}
-        {{--            success: function(data){--}}
-        {{--                console.log('ok');--}}
-        {{--                console.log(postId);--}}
-        {{--                $('#row_post_'+postId.post_id).remove();--}}
-        {{--                toasted.success(data)--}}
-        {{--            },--}}
-        {{--            error: function(data){--}}
-        {{--                console.log('bad');--}}
-        {{--                toasted.success(data.responseText)--}}
-        {{--            },--}}
-        {{--        })--}}
-        {{--    });--}}
-        {{--});--}}
+
     </script>
 @endsection

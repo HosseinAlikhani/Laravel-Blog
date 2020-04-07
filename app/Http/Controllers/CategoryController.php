@@ -25,7 +25,11 @@ class CategoryController extends BaseEntitiy
     }
     public function getDelete($id)
     {
-        dd($id);
+        if ($this->delete($id)){
+            return response()->json($this->message('deleteok'));
+        }else{
+            return response()->json($this->message('deleteno'));
+        }
     }
     public function getUpdate()
     {

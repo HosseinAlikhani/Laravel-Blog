@@ -67,7 +67,7 @@
                     }
                 });
                 $.ajax({
-                    url: " {{ route('post.create.category') }}",
+                    url: " {{ route('post.category') }}",
                     type: "POST",
                     data: formData,
                     processData: false,
