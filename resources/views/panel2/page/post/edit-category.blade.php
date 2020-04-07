@@ -6,42 +6,55 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <div class="d-flex justify-content-start">
-                <button onclick="window.location.href = '{{ route('deletePost') }}';" class="m-3 btn btn-danger" id="delete-post"> <i class="fa fa-trash-o"></i> Delete </button>
-                <button onclick="window.location.href = '{{ route('addPost') }}';" class="m-3 btn btn-success"> <i class="fa fa-edit"></i> Add Post </button>
-                <button onclick="window.location.href = '{{ route('getPosts') }}';" class="m-3 btn btn-primary"> <i class="fa fa-list"></i> List Post </button>
+            <div class="container">
+                <div class="d-flex justify-content-start">
+                    <button onclick="window.location.href = '{{ route('get.list.category') }}';" class="m-3 btn btn-primary"> <i class="fa fa-list"></i> List Category </button>
+                </div>
             </div>
         </div>
         <div class="card-body card-block">
-            <form id="add-post">
+            <form id="update-category">
                 <div class="row">
                     <div class="col-6">
-                        <div class="d-flex justify-content-center">
-                            <img src="{{ asset($post->pic) }}" style="border-radius: 7px;" alt="Post Picture" width="150" height="150">
-                        </div>
                         <div class="form-group">
-                            <label for="exampleFormControlFile1">Post Image</label>
-                            <input type="file" name="pic" class="form-control-file" id="exampleFormControlFile1">
+                            <label for="Title"> Parent </label>
+                            <select type="text" class="form-control" name="categories_id">
+                                @if(!empty($category['categories_name']))
+                                    <option value=" {{ $category['categories_id'] }}"> {{ $category['categories_name'] }}</option>
+                                    @if(!empty($categorylist{0}))
+                                        @foreach($categorylist as $categorylists)
+                                            @if($categorylists->name == $category['categories_name'])
+
+                                            @else
+                                                <option value="{{ $categorylists->id }}"> {{ $categorylists->name }}</option>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <option value="0"> موردی یافت نشد </option>
+                                    @endif
+                                @else
+                                    @if(!empty($categorylist{0}))
+                                        <option value="0"> انتخاب کنید </option>
+                                        @foreach($categorylist as $categorylists)
+                                            <option value="{{ $categorylists->id }}"> {{ $categorylists->name }}</option>
+                                        @endforeach
+                                    @else
+                                        <option value="0"> موردی یافت نشد </option>
+                                    @endif
+                                @endif
+                            </select>
                         </div>
                     </div>
                     <div class="col-6">
+                        <input type="hidden" name="id" value="{{ $category['id'] }}">
                         <div class="form-group">
-                            <label for="Title"> Title </label>
-                            <input type="text" class="form-control" value="{{ $post->title }}" id="post-title" name="title">
-                        </div>
-                        <div class="form-group">
-                            <label for="Title"> Tags </label>
-                            <input type="text" name="tags" value="" data-role="tagsinput">
+                            <label for="Title"> Name </label>
+
+                            <input class="form-control" type="text" name="name" value="{{ $category['name'] }}">
                         </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="long_description"> Description </label>
-                    <textarea id="editor1" rows="10" cols="80">
-                        {{ $post->long_description }}
-                    </textarea>
-                </div>
-                <button class="btn btn-outline-success btn-sm" id="submit-post" type="button">
+                <button class="btn btn-outline-success btn-sm" id="update-category-button" type="button">
                     <i class="fa fa-magic"></i>
                     Submit
                 </button>
@@ -53,35 +66,33 @@
 @section('script')
     <script src="{{ asset('src/plugin/taginput/tagsinput.js') }}"></script>
     <script>
-        CKEDITOR.replace( 'editor1' );
         $(function(){
-            $('#submit-post').click( function(event){
+            $('#update-category-button').click( function(event){
                 const toasted = new Toasted({
                     color:  '#fafafa',
                     position: "bottom-center",
                     duration: 6000,
                 });
                 event.preventDefault();
-                var file = $('#add-post')[0];
+                var file = $('#update-category')[0];
                 var formData = new FormData(file);
-                var hos = CKEDITOR.instances['editor1'].getData();
-                formData.append('long_description',hos);
                 $.ajaxSetup({
                     headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
                     }
                 });
                 $.ajax({
-                    url: " {{ route('patchPost', ['post' => $post->id]) }}",
-                    type: "POST",
+                    url: " {{ route('patch.category') }}",
+                    type: "post",
                     data: formData,
                     processData: false,
                     contentType: false,
                     success: function(data){
-                        toasted.success(data)
+                        toasted.success(data);
                     },
                     error: function(data){
-                        toasted.success(data.responseText)
+                        var message = JSON.parse(data.responseText);
+                        toasted.success(message.message);
                     },
                 });
             })

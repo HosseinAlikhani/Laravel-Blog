@@ -43,7 +43,7 @@ class CategoryController extends BaseEntitiy
                 'categories_name'   =>  $this->findOne($category->categories_id)->name,
             ];
         }
-        return view('panel2.page.post.update-category', compact(['category', 'categorylist']));
+        return view('panel2.page.post.edit-category', compact(['category', 'categorylist']));
     }
     public function postCategory()
     {
