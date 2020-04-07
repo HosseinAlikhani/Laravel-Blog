@@ -27,7 +27,7 @@
                     @foreach($category as $categories)
                         <tr id="row-category-{{ $categories->id }}">
                             <th scope="row">{{ $categories->id }}</th>
-                            <td><a href="{{ route('getPosts', [$categories->id]) }}"> {{ $categories->name }} </a></td>
+                            <td><a href="{{ route('get.update.category', [$categories->id]) }}"> {{ $categories->name }} </a></td>
                             <td> {{ $categories->created_at }}</td>
                             <td>
                                 <button class="btn" data-toggle="modal" data-target="#delete-modal" data-whatever="{{ $categories }}" > <i class="fa fa-trash-o"></i> </button>
@@ -78,13 +78,11 @@
                 var deletebutton = '<button type="button" data-dismiss="modal" class="btn btn-danger ml-2 mr-2 modal-button-delete" id="modal-button-delete-'+ button.id +'" >Delete</button>';
                 $('#modal-delete-button-section').append(deletebutton);
                 $('#modal-button-delete-'+ button.id).click(function(){
-                    url = "{{ route('get.delete.category', ":id") }}";
-                    url = url.replace(':id', button.id);
                     $.ajax({
-                        'url': url,
-                        type: "GET",
+                        'url': " {{ route('post.delete.category') }}",
+                        type: "DELETE",
                         data: {
-                            'name': 'hossein',
+                            'category_id': button.id,
                         },
                         success: function(data){
                             console.log('ok');

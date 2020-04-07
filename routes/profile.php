@@ -16,8 +16,8 @@ Route::prefix('profile')->group(function(){
     Route::prefix('category')->group(function (){
         Route::get('add', 'CategoryController@getCreate')->name('get.create.category');
         Route::get('list', 'CategoryController@getList')->name('get.list.category');
-        Route::get('update', 'CategoryController@getUpdate')->name('get.update.category');
-        Route::get('delete/{id}', 'CategoryController@getDelete')->name('get.delete.category');
+        Route::get('update/{id}', 'CategoryController@getUpdate')->name('get.update.category');
+        Route::delete('delete', 'CategoryController@getDelete')->name('post.delete.category');
         Route::post('', 'CategoryController@postCreate')->name('post.category');
     });
     Route::prefix('tag')->group(function (){

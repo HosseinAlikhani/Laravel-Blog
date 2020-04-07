@@ -15,17 +15,18 @@ class CategoryController extends BaseEntitiy
     }
     public function getCreate()
     {
-        $tags = $this->tagController()->findAll();
-        return view('panel2.page.post.add-category', compact(['tags']));
+        $category = $this->findAll();
+        dd($category);
+        return view('panel2.page.post.add-category', compact(['category']));
     }
     public function getList()
     {
         $category = $this->findAll();
         return view('panel2.page.post.list-category', compact(['category']));
     }
-    public function getDelete($id)
+    public function getDelete()
     {
-        if ($this->delete($id)){
+        if ($this->delete($this->request->category_id)){
             return response()->json($this->message('deleteok'));
         }else{
             return response()->json($this->message('deleteno'));

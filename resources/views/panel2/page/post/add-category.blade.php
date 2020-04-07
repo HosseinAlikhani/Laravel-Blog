@@ -20,10 +20,10 @@
                         <div class="form-group">
                             <label for="Title"> Parent </label>
                             <select type="text" class="form-control" name="categories_id">
-                                @if(!empty($tags{0}))
+                                @if(!empty($category{0}))
                                     <option value="0"> انتخاب کنید </option>
-                                    @foreach($tags as $tag)
-                                        <option value="{{ $tag->id }}"> {{ $tag->name }}</option>
+                                    @foreach($category as $categories)
+                                        <option value="{{ $categories->id }}"> {{ $categories->name }}</option>
                                     @endforeach
                                 @else
                                     <option value="0"> موردی یافت نشد </option>
