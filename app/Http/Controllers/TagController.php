@@ -38,4 +38,14 @@ class TagController extends BaseEntitiy
             return response()->json($this->message('submitno'));
         }
     }
+
+    public function deleteTag()
+    {
+        $is_create = $this->delete($this->request->tag_id);
+        if ($is_create){
+            return response()->json($this->message('deleteok'));
+        }else{
+            return response()->json($this->message('deleteno'));
+        }
+    }
 }

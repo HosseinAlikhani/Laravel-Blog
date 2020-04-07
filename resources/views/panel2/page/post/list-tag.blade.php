@@ -11,9 +11,9 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex justify-content-start">
-                <button onclick="window.location.href = '{{ route('get.create.category') }}';" class="m-3 btn btn-info"> Add Category </button>
+                <button onclick="window.location.href = '{{ route('get.create.tag') }}';" class="m-3 btn btn-info"> Add Tag </button>
             </div>
-            @if(!empty($category[0]))
+            @if(!empty($tags[0]))
                 <table dir="rtl" class="table table-hover ">
                     <thead>
                     <tr>
@@ -25,15 +25,15 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($category as $categories)
-                        <tr id="row-category-{{ $categories->id }}">
-                            <th scope="row">{{ $categories->id }}</th>
-                            <td><a href="{{ route('get.update.category', [$categories->id]) }}"> {{ $categories->name }} </a></td>
-                            <td> {{ $categories->categories_id }}</td>
-                            <td> {{ $categories->created_at }}</td>
+                    @foreach($tags as $tag)
+                        <tr id="row-tag-{{ $tag->id }}">
+                            <th scope="row">{{ $tag->id }}</th>
+                            <td><a href="{{ route('get.update.tag', [$tag->id]) }}"> {{ $tag->name }} </a></td>
+                            <td> {{ $tag->tags_id }}</td>
+                            <td> {{ $tag->created_at }}</td>
                             <td>
-                                <button class="btn" data-toggle="modal" data-target="#delete-modal" data-whatever="{{ $categories }}" > <i class="fa fa-trash-o"></i> </button>
-                                <button onclick="window.location.href = '{{ route('get.update.category', [$categories->id]) }}';" class="btn" data-toggle="tooltip" data-placement="left" title="Edit Post"> <i class="fa fa-edit"></i> </button>
+                                <button class="btn" data-toggle="modal" data-target="#delete-modal" data-whatever="{{ $tag }}" > <i class="fa fa-trash-o"></i> </button>
+                                <button onclick="window.location.href = '{{ route('get.update.tag', [$tag->id]) }}';" class="btn" data-toggle="tooltip" data-placement="left" title="Edit tag"> <i class="fa fa-edit"></i> </button>
                             </td>
                         </tr>
                     @endforeach
@@ -46,14 +46,14 @@
 
 {{--        delete modal --}}
     </div>
-    <div style="text-align: left" class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="Delete Category" aria-hidden="true">
+    <div style="text-align: left" class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="Delete Tag" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modal-delete-title"></h5>
                 </div>
                 <div class="modal-body" id="modal-delete-message">
-                    Are u Sure To Delete this Category ?
+                    Are u Sure To Delete this Tag ?
 
                 </div>
                 <div class="modal-footer">
@@ -81,21 +81,21 @@
                 $('#modal-delete-button-section').append(deletebutton);
                 $('#modal-button-delete-'+ button.id).click(function(){
                     $.ajax({
-                        'url': " {{ route('post.delete.category') }}",
+                        'url': " {{ route('delete.tag') }}",
                         type: "DELETE",
                         data: {
-                            'category_id': button.id,
+                            'tag_id': button.id,
                         },
                         success: function(data){
                             console.log('ok');
-                            $('#row-category-'+button.id).hide();
+                            $('#row-tag-'+button.id).hide();
                             toasted.success(data)
                         },
                         error: function(data){
                             toasted.success(data.responseText)
                         },
                     });
-                    $('row-category-' + button.id).remove();
+                    $('row-tag-' + button.id).remove();
                 });
             });
             $('#delete-modal').on('hide.bs.modal', function(e){
