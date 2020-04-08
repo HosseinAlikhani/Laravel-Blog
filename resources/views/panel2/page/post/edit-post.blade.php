@@ -23,6 +23,14 @@
                             <label for="exampleFormControlFile1">Post Image</label>
                             <input type="file" name="pic" class="form-control-file" id="exampleFormControlFile1">
                         </div>
+                        <div class="form-group">
+                            <label for="Category"> Category </label>
+                            @if(!empty($category{0}))
+                            <input type="text" name="categories" value="{{ $category }}" data-role="tagsinput">
+                            @else
+                            <input type="text" name="categories" value="" data-role="tagsinput">
+                            @endif
+                        </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
@@ -30,8 +38,12 @@
                             <input type="text" class="form-control" value="{{ $post->title }}" id="post-title" name="title">
                         </div>
                         <div class="form-group">
-                            <label for="Title"> Tags </label>
-                            <input type="text" name="tags" value="" data-role="tagsinput">
+                            <label for="Tag"> Tag </label>
+                            @if(!empty($tag{0}))
+                                <input type="text" name="tags" value="{{ $tag }}" data-role="tagsinput">
+                            @else
+                                <input type="text" name="tags" value="" data-role="tagsinput">
+                            @endif
                         </div>
                     </div>
                 </div>

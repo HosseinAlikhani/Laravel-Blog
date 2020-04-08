@@ -99,10 +99,12 @@
                     processData: false,
                     contentType: false,
                     success: function(data){
+                        console.log(data);
                         toasted.success(data.message)
                     },
                     error: function(data){
-                        toasted.success(data.responseText)
+                        var message = JSON.parse(data.responseText);
+                        toasted.success(message.message);
                     },
                 });
             })
