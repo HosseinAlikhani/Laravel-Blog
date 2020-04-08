@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Model\Post;
+use App\Model\Tag;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends BaseEntitiy
@@ -32,7 +33,9 @@ class PostController extends BaseEntitiy
     }
     public function getPost(Post $post)
     {
-        return view('panel2.page.post.edit-post', compact(['post']));
+        $tag = $this->tagController()->findAll()->pluck('name');
+        $category = $this->categoryController()->findAll()->pluck('name');
+        return view('panel2.page.post.edit-post', compact(['post', 'tag', 'category']));
     }
     public function getPostPost()
     {
@@ -55,11 +58,6 @@ class PostController extends BaseEntitiy
     }
     public function patchPost($post)
     {
-        $validator = $this->validator($this->request->all());
-        if ($validator->fails()){
-            return response($validator->errors()->first(), 423);
-        }
-
         $model = $this->update($post, $this->createVariable($this->request->all()));
         return response([
             'message'   =>  'post create successfully',
