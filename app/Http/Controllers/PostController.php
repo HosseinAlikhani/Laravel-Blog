@@ -49,7 +49,9 @@ class PostController extends BaseEntitiy
     }
     public function getPostPost()
     {
-        return view('panel2.page.post.add-post');
+        $category = $this->categoryController()->findAll();
+        $tag = $this->tagController()->findAll();
+        return view('panel2.page.post.add-post', compact(['category', 'tag']));
     }
     public function postPost()
     {

@@ -22,6 +22,19 @@
                             <label for="exampleFormControlFile1">Post Image</label>
                             <input type="file" name="pic" class="form-control-file" id="exampleFormControlFile1">
                         </div>
+                        <div class="form-group">
+                            <label for="Category"> Category </label>
+                            <select class="form-control" name="categories_id">
+                                @if(!empty($category{0}))
+                                    <option value="0"> انتخاب کنید</option>
+                                @foreach($category as $categories)
+                                        <option value="{{ $categories->id }}"> {{ $categories->name }} </option>
+                                    @endforeach
+                                @else
+                                    <option value="0"> موردی یافت نشد</option>
+                                @endif
+                            </select>
+                        </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
@@ -29,8 +42,17 @@
                             <input type="text" class="form-control" id="post-title" name="title">
                         </div>
                         <div class="form-group">
-                            <label for="Title"> Tags </label>
-                            <input type="text" name="tags" data-role="tagsinput">
+                            <label for="Tag"> Tag </label>
+                            <select class="form-control" name="tags_id">
+                                @if(!empty($tag{0}))
+                                    <option value="0"> انتخاب کنید</option>
+                                @foreach($tag as $tags)
+                                    <option value="{{ $tags->id }}"> {{ $tags->name }} </option>
+                                @endforeach
+                                @else
+                                    <option value="0"> موردی یافت نشد</option>
+                                @endif
+                            </select>
                         </div>
                     </div>
                 </div>
