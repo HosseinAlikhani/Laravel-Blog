@@ -2,37 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\BaseEntitiy;
+use App\Http\Requests\PostRequest;
 use App\Model\Post;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
 
 class PostController extends BaseEntitiy
 {
     protected $request;
     protected $model;
-    public function __construct(Request $request, Post $post)
+    public function __construct(PostRequest $request, Post $post)
     {
         $this->request = $request;
         $this->model = $post;
-    }
-    public function validator($validator)
-    {
-        $value = [
-            'title'    =>  'required',
-            'long_description'  =>  'required',
-            'tags'  =>  'required',
-            'pic'   =>  'required',
-        ];
-        return Validator::make($validator, $value);
     }
     public function createVariable($data)
     {
         return [
             'title' =>  $data['title'],
             'user_id'   =>  1,
-            'tags'  =>  $data['tags'],
             'pic'   =>  $this->uploadPic($this->request->pic),
             'long_description'  =>  $data['long_description'],
             'short_description' =>  'short_description',
@@ -55,16 +42,16 @@ class PostController extends BaseEntitiy
     }
     public function postPost()
     {
-        $validator = $this->validator($this->request->all());
-        if ($validator->fails()){
-            return response($validator->errors()->first(), 423);
+        $model = $this->create($this->createVariable($this->request->all()));
+        if ($model){
+            return response([
+                'message'   =>  $this->message('submitok'),
+                'data'  =>  $model,
+            ], 200);
+        }else{
+            return response()->json($this->message('submitno'));
         }
 
-        $model = $this->create($this->createVariable($this->request->all()));
-        return response([
-            'message'   =>  'post create successfully',
-            'data'  =>  $model,
-        ], 200);
     }
     public function patchPost($post)
     {
