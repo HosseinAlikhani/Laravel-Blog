@@ -19,7 +19,6 @@ class CreatePostsTable extends Migration
             $table->string('short_description');
             $table->text('long_description');
             $table->integer('user_id');
-            $table->text('tags');
             $table->text('pic');
             $table->timestamps();
         });
